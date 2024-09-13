@@ -1,27 +1,22 @@
 import express from 'express'
 import {
   createBoard,
-  getBoards,
-  getBoardById,
   updateBoard,
   deleteBoard,
-} from '../controllers/boardControllers.js'
+  getAllBoards,
+  getBoardsByUser,
+  getBoardById,
+} from '../controllers/boardController.js'
+import { authenticateToken } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-// Create a board
-router.post('/create', createBoard)
+router.get('/', getAllBoards)
 
-// Get all boards for the authenticated user
-router.get('/all', getBoards)
-
-// Get a single board by ID
+router.post('/create', authenticateToken, createBoard)
+router.get('/myboards', authenticateToken, getBoardsByUser)
 router.get('/:id', getBoardById)
-
-// Update a board by ID
-router.put('/:id', updateBoard)
-
-// Delete a board by ID
-router.delete('/:id', deleteBoard)
+router.put('/:id', authenticateToken, updateBoard)
+router.delete('/:id', authenticateToken, deleteBoard)
 
 export default router

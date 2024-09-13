@@ -4,6 +4,7 @@ import { connectDB } from './config/db.js'
 import cookieParser from 'cookie-parser'
 import authRouter from './routes/authRoutes.js'
 import boardRouter from './routes/boardRoutes.js'
+import postsRouter from './routes/postRoutes.js'
 import { authenticateToken } from './middleware/authMiddleware.js'
 
 dotenv.config()
@@ -19,7 +20,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', authRouter)
-app.use('/boards', authenticateToken, boardRouter)
+app.use('/boards', boardRouter)
+app.use('/posts', postsRouter)
 
 app.listen(PORT, () => {
   connectDB()

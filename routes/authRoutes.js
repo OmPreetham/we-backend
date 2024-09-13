@@ -6,7 +6,7 @@ import {
   logoutController,
   changePasswordController,
   refreshTokenController,
-} from '../controllers/authContollers.js'
+} from '../controllers/authContoller.js'
 import { authenticateToken } from '../middleware/authMiddleware.js'
 
 const router = express.Router()

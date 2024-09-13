@@ -16,14 +16,11 @@ export const requestVerificationCodeController = async (req, res) => {
   }
 
   try {
-    // Generate OTP
     const otp = generateOTP()
-    const expiresAt = new Date(Date.now() + 10 * 60 * 1000) // OTP valid for 10 minutes
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000)
 
-    // Save OTP to the database
     await VerificationCode.create({ email, code: otp, expiresAt })
 
-    // Send OTP via email
     await transporter.sendMail({
       from: process.env.GMAIL_USER,
       to: email,
@@ -47,36 +44,30 @@ export const signupController = async (req, res) => {
   }
 
   try {
-    // Check if the OTP exists and is valid
     const verificationCode = await VerificationCode.findOne({ code })
 
     if (!verificationCode) {
       return res.status(400).json({ error: 'Invalid verification code' })
     }
 
-    // Check if OTP has expired
     if (verificationCode.expiresAt < new Date()) {
       return res.status(400).json({ error: 'Verification code has expired' })
     }
 
-    // Check if the user already exists with the email
     const existingUsername = await User.findOne({ username })
 
     if (existingUsername) {
       return res.status(400).json({ error: 'Username already taken' })
     }
 
-    // Create a new user with the provided username, email, and password
     const newUser = new User({
       username,
       email: verificationCode.email,
       password,
     })
 
-    // Save the new user
     await newUser.save()
 
-    // Optionally, delete the verification code after successful registration
     await VerificationCode.deleteOne({ code })
 
     res.status(201).json({ message: 'User registered successfully' })
@@ -96,39 +87,33 @@ export const loginController = async (req, res) => {
   }
 
   try {
-    // Find user by email
     const user = await User.findOne({ email, username })
 
     if (!user) {
       return res.status(400).json({ error: 'Invalid email or password' })
     }
 
-    // Compare passwords
     const isPasswordValid = await bcrypt.compare(password, user.password)
 
     if (!isPasswordValid) {
       return res.status(400).json({ error: 'Invalid email or password' })
     }
 
-    // Generate JWT access token
     const accessToken = jwt.sign(
       { userId: user._id, email: user.email },
-      process.env.JWT_ACCESS_SECRET, // Secret key for access token
-      { expiresIn: '15m' } // Access token expires in 15 minutes
+      process.env.JWT_ACCESS_SECRET,
+      { expiresIn: '15m' }
     )
 
-    // Generate JWT refresh token
     const refreshToken = jwt.sign(
       { userId: user._id, email: user.email },
-      process.env.JWT_REFRESH_SECRET, // Secret key for refresh token
-      { expiresIn: '7d' } // Refresh token expires in 7 days
+      process.env.JWT_REFRESH_SECRET,
+      { expiresIn: '7d' }
     )
 
-    // Store the refresh token in the database (optional, but recommended for security)
     user.refreshToken = refreshToken
     await user.save()
 
-    // Send response with tokens
     res.status(200).json({
       message: 'Login successful',
       accessToken,
@@ -148,7 +133,6 @@ export const refreshTokenController = async (req, res) => {
   }
 
   try {
-    // Verify the refresh token
     const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET)
     const user = await User.findOne({ _id: decoded.userId, refreshToken })
 
@@ -156,7 +140,6 @@ export const refreshTokenController = async (req, res) => {
       return res.status(400).json({ error: 'Invalid refresh token' })
     }
 
-    // Generate a new access token
     const accessToken = jwt.sign(
       { userId: user._id, email: user.email },
       process.env.JWT_ACCESS_SECRET,
@@ -183,14 +166,12 @@ export const logoutController = async (req, res) => {
   }
 
   try {
-    // Find user by refresh token
     const user = await User.findOne({ refreshToken })
 
     if (!user) {
       return res.status(400).json({ error: 'Invalid refresh token' })
     }
 
-    // Remove refresh token from user record
     user.refreshToken = null
     await user.save()
 
@@ -213,7 +194,6 @@ export const changePasswordController = async (req, res) => {
   }
 
   try {
-    // Get user from request (assuming user info is available via middleware)
     const userId = req.user.userId
     const user = await User.findById(userId)
 
@@ -221,7 +201,6 @@ export const changePasswordController = async (req, res) => {
       return res.status(404).json({ error: 'User not found' })
     }
 
-    // Check old password
     const isOldPasswordValid = await bcrypt.compare(oldPassword, user.password)
 
     if (!isOldPasswordValid) {
