@@ -11,7 +11,7 @@ import { authenticateToken } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-router.post('/request', requestVerificationCodeController)
+router.post('/verify', requestVerificationCodeController)
 router.post('/signup', signupController)
 router.post('/login', loginController)
 router.post('/logout', logoutController)
