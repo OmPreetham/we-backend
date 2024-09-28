@@ -13,7 +13,7 @@ import {
   getBookmarkedPosts,
   bookmarkPost,
 } from '../controllers/bookmarkController.js'
-import { authenticateToken } from '../middleware/authMiddleware.js'
+import { authenticateToken } from '../middleware/auth.js'
 
 const router = express.Router()
 

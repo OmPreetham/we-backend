@@ -7,7 +7,7 @@ import {
   getBoardsByUser,
   getBoardById,
 } from '../controllers/boardController.js'
-import { authenticateToken } from '../middleware/authMiddleware.js'
+import { authenticateToken } from '../middleware/auth.js'
 
 const router = express.Router()
 

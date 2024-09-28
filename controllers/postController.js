@@ -4,7 +4,7 @@ import Upvote from '../models/Upvote.js'
 import Downvote from '../models/Downvote.js'
 
 export const createPost = async (req, res) => {
-  const { content, parentPostId, boardId } = req.body
+  const { content, parentPostId, boardId, username: newUsername } = req.body
   const { userId, username } = req.user
 
   try {
@@ -23,7 +23,7 @@ export const createPost = async (req, res) => {
     const newPost = new Post({
       content,
       user: userId,
-      username,
+      username: newUsername || username, // Use newUsername if provided
       parentPost: parentPostId || null,
       path: postPath || ',',
       board: boardId,
@@ -39,7 +39,7 @@ export const createPost = async (req, res) => {
 
 export const replyToPost = async (req, res) => {
   const { id } = req.params
-  const { content } = req.body
+  const { content, username: newUsername } = req.body
 
   try {
     const parentPost = await Post.findById(id)
@@ -48,7 +48,7 @@ export const replyToPost = async (req, res) => {
     const replyPost = new Post({
       content,
       user: req.user.userId,
-      username: req.user.username,
+      username: newUsername || req.user.username, // Use newUsername if provided
       parentPost: id,
       path: `${parentPost.path}${parentPost._id},`,
       board: parentPost.board,

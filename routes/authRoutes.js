@@ -1,18 +1,18 @@
 import express from 'express'
 import {
   requestVerificationCodeController,
-  signupController,
+  registerController,
   loginController,
   logoutController,
   changePasswordController,
   refreshTokenController,
 } from '../controllers/authContoller.js'
-import { authenticateToken } from '../middleware/authMiddleware.js'
+import { authenticateToken } from '../middleware/auth.js'
 
 const router = express.Router()
 
-router.post('/verify', requestVerificationCodeController)
-router.post('/signup', signupController)
+router.post('/requestverificationcode', requestVerificationCodeController)
+router.post('/register', registerController)
 router.post('/login', loginController)
 router.post('/logout', logoutController)
 router.patch('/change-password', authenticateToken, changePasswordController)
