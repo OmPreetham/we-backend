@@ -7,7 +7,8 @@ import User from '../models/User.js';
 import VerificationCode from '../models/VerificationCode.js';
 import transporter from '../config/nodemailer.js';
 import { generateOTP } from '../utils/generateOTP.js';
-import { hashEmail, encryptData } from '../utils/encryption.js';
+import { hashEmail, encryptData } from '../utils/encryption.js'
+import BlacklistedToken from '../models/BacklistedToken.js'
 import logger from '../config/logger.js';
 
 dotenv.config();
@@ -247,10 +248,11 @@ export const refreshTokenController = async (req, res) => {
 
 export const logoutController = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
+  const accessToken = req.cookies.accessToken;
 
-  if (!refreshToken) {
-    logger.warn('No refresh token provided in logoutController');
-    return res.status(400).json({ error: 'Refresh token is required' });
+  if (!refreshToken || !accessToken) {
+    logger.warn('No tokens provided in logoutController');
+    return res.status(400).json({ error: 'Tokens are required' });
   }
 
   try {
@@ -264,6 +266,20 @@ export const logoutController = async (req, res) => {
     // Clear the refresh token from the user's record
     user.refreshToken = null;
     await user.save();
+
+    // Blacklist the access token
+    const decoded = jwt.decode(accessToken);
+
+    if (decoded && decoded.exp) {
+      const expiresAt = new Date(decoded.exp * 1000); // Convert to milliseconds
+
+      await BlacklistedToken.create({
+        token: accessToken,
+        expiresAt,
+      });
+    } else {
+      logger.warn('Failed to decode access token in logoutController');
+    }
 
     // Clear the cookies
     res.clearCookie('accessToken', {

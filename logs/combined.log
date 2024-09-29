@@ -128,3 +128,25 @@
 {"level":"http","message":"::1 - - [29/Sep/2024:06:53:17 +0000] \"POST /api/boards/create HTTP/1.1\" 201 271 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:53:17"}
 {"level":"http","message":"::1 - - [29/Sep/2024:06:53:25 +0000] \"GET /api/posts HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:53:25"}
 {"level":"http","message":"::1 - - [29/Sep/2024:06:53:30 +0000] \"GET /api/posts/board/66f8f95d9a0e08264fc7c74a HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:53:30"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:57:19"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:57:20"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:57:20"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:57:20"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:57:22"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:57:22"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:57:25"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:57:26"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:57:26"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:58:25"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:58:26"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:58:26"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:58:45"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:58:46"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:58:46"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 02:01:13"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 02:01:14"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 02:01:14"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-09-29 02:02:40"}
+{"level":"http","message":"::1 - - [29/Sep/2024:07:02:40 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 02:02:40"}
+{"level":"info","message":"User logged out: %s","service":"user-service","timestamp":"2024-09-29 02:03:08"}
+{"level":"http","message":"::1 - - [29/Sep/2024:07:03:08 +0000] \"POST /api/auth/logout HTTP/1.1\" 200 31 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 02:03:08"}
