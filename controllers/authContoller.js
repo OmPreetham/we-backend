@@ -1,20 +1,25 @@
-import VerificationCode from '../models/VerificationCode.js'
-import User from '../models/User.js'
-import transporter from '../config/nodemailer.js'
-import { generateOTP } from '../utils/generateOTP.js'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
-import { hashEmail, encryptData, decryptData } from '../utils/encryption.js';
+// controllers/authController.js
+import { validationResult } from 'express-validator';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import User from '../models/User.js';
+import VerificationCode from '../models/VerificationCode.js';
+import transporter from '../config/nodemailer.js';
+import { generateOTP } from '../utils/generateOTP.js';
+import { hashEmail, encryptData } from '../utils/encryption.js';
+import logger from '../config/logger.js';
 
-dotenv.config()
+dotenv.config();
 
 export const requestVerificationCodeController = async (req, res) => {
-  const { email } = req.body
+  const { email } = req.body;
 
-  if (!email || typeof email !== 'string' || !email.includes('@')) {
-    res.status(400).json({ error: 'Valid email is required' })
-    return
+  // Input validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    logger.warn('Validation errors in requestVerificationCodeController: %o', errors.array());
+    return res.status(400).json({ errors: errors.array() });
   }
 
   try {
@@ -22,20 +27,20 @@ export const requestVerificationCodeController = async (req, res) => {
     const existingCode = await VerificationCode.findOne({
       email,
       expiresAt: { $gt: new Date() },
-    })
+    });
 
     if (existingCode) {
-      res.status(429).json({
+      logger.warn('Verification code already sent to email: %s', email);
+      return res.status(429).json({
         error:
           'A verification code has already been sent. Please wait before requesting a new one.',
-      })
-      return
+      });
     }
 
-    const otp = generateOTP()
-    const expiresAt = new Date(Date.now() + 10 * 60 * 1000) // 10 minutes from now
+    const otp = generateOTP();
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes from now
 
-    await VerificationCode.create({ email, code: otp, expiresAt })
+    await VerificationCode.create({ email, code: otp, expiresAt });
 
     await transporter.sendMail({
       from: process.env.GMAIL_USER,
@@ -48,101 +53,121 @@ export const requestVerificationCodeController = async (req, res) => {
         <p>It is valid for 10 minutes.</p>
         <p>If you didn't request this code, please ignore this email.</p>
       `,
-    })
+    });
 
-    res.status(200).json({ message: 'Verification code sent successfully' })
+    res.status(200).json({ message: 'Verification code sent successfully' });
+    logger.info('Verification code sent to email: %s', email);
   } catch (error) {
-    console.error('Error in requestVerificationCodeController:', error)
+    logger.error('Error in requestVerificationCodeController: %o', error);
     res.status(500).json({
       error:
         'An error occurred while processing your request. Please try again later.',
-    })
+    });
   }
-}
-
+};
 
 export const registerController = async (req, res) => {
   const { code, username, password } = req.body;
 
-  if (!code || !username || !password) {
-    return res.status(400).json({ error: 'Code, username, and password are required' });
+  // Input validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    logger.warn('Validation errors in registerController: %o', errors.array());
+    return res.status(400).json({ errors: errors.array() });
   }
 
   try {
     const verificationCode = await VerificationCode.findOne({ code });
 
     if (!verificationCode) {
+      logger.warn('Invalid verification code used: %s', code);
       return res.status(400).json({ error: 'Invalid verification code' });
     }
 
     if (verificationCode.expiresAt < new Date()) {
+      logger.warn('Verification code expired: %s', code);
       return res.status(400).json({ error: 'Verification code has expired' });
     }
 
     const existingUsername = await User.findOne({ username });
 
     if (existingUsername) {
+      logger.warn('Username already taken: %s', username);
       return res.status(400).json({ error: 'Username already taken' });
     }
 
-    // Hash the email using HMAC-SHA256
+    // Hash and encrypt the email
     const hashedEmail = hashEmail(verificationCode.email);
-
-    // Encrypt the hashed email
     const encryptedEmail = encryptData(hashedEmail);
 
+    // Check if the email is already registered
+    const existingEmail = await User.findOne({ email: encryptedEmail });
 
+    if (existingEmail) {
+      logger.warn('Email is already registered: %s', verificationCode.email);
+      return res.status(400).json({ error: 'Email is already registered' });
+    }
+
+    // Create the new user
     const newUser = new User({
       username,
       email: encryptedEmail,
-      password
+      password,
     });
 
     await newUser.save();
 
+    // Delete the verification code
     await VerificationCode.deleteOne({ code });
 
     res.status(201).json({ message: 'User registered successfully' });
+    logger.info('User registered successfully: %s', username);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error registering user. Please try again.' });
+    if (error.code === 11000) {
+      logger.warn('Duplicate key error in registerController: %o', error);
+      res.status(400).json({ error: 'Duplicate key error. Please try again.' });
+    } else {
+      logger.error('Error in registerController: %o', error);
+      res.status(500).json({ error: 'Error registering user. Please try again.' });
+    }
   }
 };
 
 export const loginController = async (req, res) => {
   const { email, username, password } = req.body;
 
-  if (!email || !username || !password) {
-    return res.status(400).json({ error: 'Email, username, and password are required' });
+  // Input validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    logger.warn('Validation errors in loginController: %o', errors.array());
+    return res.status(400).json({ errors: errors.array() });
   }
 
   try {
-    // Find the user by username
-    const user = await User.findOne({ username });
+    // Hash and encrypt the input email for comparison
+    const hashedEmail = hashEmail(email);
+    const encryptedEmail = encryptData(hashedEmail);
+
+    // Find the user by username and encrypted email
+    const user = await User.findOne({
+      username,
+      email: encryptedEmail,
+    });
 
     if (!user) {
-      return res.status(400).json({ error: 'Invalid email or password' });
+      logger.warn('Invalid credentials for username: %s', username);
+      return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-    // Decrypt the stored hashed email
-    const storedHashedEmail = decryptData(user.email);
-
-    // Hash the input email using the same method
-    const inputHashedEmail = hashEmail(email);
-
-    // Compare the hashed emails
-    if (storedHashedEmail !== inputHashedEmail) {
-      return res.status(400).json({ error: 'Invalid email or password' });
-    }
-
-    // Check if the password is correct
+    // Verify the password
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(400).json({ error: 'Invalid email or password' });
+      logger.warn('Invalid password for username: %s', username);
+      return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-    // Generate tokens without including the email in the payload
+    // Generate JWT tokens
     const accessToken = jwt.sign(
       { userId: user._id },
       process.env.JWT_ACCESS_SECRET,
@@ -155,12 +180,14 @@ export const loginController = async (req, res) => {
       { expiresIn: '7d' }
     );
 
+    // Save the refresh token in the user's record
     user.refreshToken = refreshToken;
     await user.save();
 
+    // Set tokens in HTTP-only cookies
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === 'production', // Ensure secure flag is true in production
       maxAge: 15 * 60 * 1000,
       sameSite: 'Strict',
     });
@@ -173,8 +200,9 @@ export const loginController = async (req, res) => {
     });
 
     res.status(200).json({ message: 'Login successful' });
+    logger.info('User logged in: %s', username);
   } catch (error) {
-    console.error(error);
+    logger.error('Error in loginController: %o', error);
     res.status(500).json({ error: 'Error logging in. Please try again later.' });
   }
 };
@@ -183,6 +211,7 @@ export const refreshTokenController = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
 
   if (!refreshToken) {
+    logger.warn('No refresh token provided in refreshTokenController');
     return res.status(400).json({ error: 'Refresh token is required' });
   }
 
@@ -191,6 +220,7 @@ export const refreshTokenController = async (req, res) => {
     const user = await User.findOne({ _id: decoded.userId, refreshToken });
 
     if (!user) {
+      logger.warn('Invalid refresh token in refreshTokenController');
       return res.status(400).json({ error: 'Invalid refresh token' });
     }
 
@@ -208,8 +238,9 @@ export const refreshTokenController = async (req, res) => {
     });
 
     res.status(200).json({ message: 'Access token refreshed successfully' });
+    logger.info('Access token refreshed for user: %s', user.username);
   } catch (error) {
-    console.error(error);
+    logger.error('Error in refreshTokenController: %o', error);
     res.status(500).json({ error: 'Error refreshing access token. Please try again later.' });
   }
 };
@@ -218,6 +249,7 @@ export const logoutController = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
 
   if (!refreshToken) {
+    logger.warn('No refresh token provided in logoutController');
     return res.status(400).json({ error: 'Refresh token is required' });
   }
 
@@ -225,6 +257,7 @@ export const logoutController = async (req, res) => {
     const user = await User.findOne({ refreshToken });
 
     if (!user) {
+      logger.warn('Invalid refresh token in logoutController');
       return res.status(400).json({ error: 'Invalid refresh token' });
     }
 
@@ -245,8 +278,9 @@ export const logoutController = async (req, res) => {
     });
 
     res.status(200).json({ message: 'Logout successful' });
+    logger.info('User logged out: %s', user.username);
   } catch (error) {
-    console.error(error);
+    logger.error('Error in logoutController: %o', error);
     res.status(500).json({ error: 'Error logging out. Please try again later.' });
   }
 };
@@ -254,27 +288,26 @@ export const logoutController = async (req, res) => {
 export const changePasswordController = async (req, res) => {
   const { oldPassword, newPassword } = req.body;
 
-  if (!oldPassword || !newPassword) {
-    return res.status(400).json({ error: 'Old password and new password are required' });
+  // Input validation
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    logger.warn('Validation errors in changePasswordController: %o', errors.array());
+    return res.status(400).json({ errors: errors.array() });
   }
 
   try {
-    // Retrieve the access token from cookies
-    const accessToken = req.cookies.accessToken;
-    if (!accessToken) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    const decoded = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
-    const user = await User.findById(decoded.userId);
+    const userId = req.user.userId;
+    const user = await User.findById(userId);
 
     if (!user) {
+      logger.warn('User not found in changePasswordController: %s', userId);
       return res.status(404).json({ error: 'User not found' });
     }
 
     const isOldPasswordValid = await bcrypt.compare(oldPassword, user.password);
 
     if (!isOldPasswordValid) {
+      logger.warn('Incorrect old password for user: %s', user.username);
       return res.status(400).json({ error: 'Old password is incorrect' });
     }
 
@@ -283,8 +316,9 @@ export const changePasswordController = async (req, res) => {
     await user.save();
 
     res.status(200).json({ message: 'Password changed successfully' });
+    logger.info('Password changed for user: %s', user.username);
   } catch (error) {
-    console.error(error);
+    logger.error('Error in changePasswordController: %o', error);
     res.status(500).json({ error: 'Error changing password. Please try again later.' });
   }
 };

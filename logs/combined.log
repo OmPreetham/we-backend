@@ -1,0 +1,130 @@
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:18:34"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:19:02"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:19:21"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:19:24"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:20:01"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:22:46"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:23:19"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:23:22"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:23:33"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:24:30"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:25:14"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:26:11"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:26:30"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:29:34"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:30:19"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:32:16"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:35:43"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:35:45"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:35:45"}
+{"level":"info","message":"Verification code sent to email: %s","service":"user-service","timestamp":"2024-09-29 01:35:52"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:35:52 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 200 49 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:35:52"}
+{"level":"info","message":"User registered successfully: %s","service":"user-service","timestamp":"2024-09-29 01:37:11"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:37:11 +0000] \"POST /api/auth/register HTTP/1.1\" 201 42 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:37:11"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-09-29 01:37:15"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:37:15 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:37:15"}
+{"level":"info","message":"User logged out: %s","service":"user-service","timestamp":"2024-09-29 01:37:19"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:37:19 +0000] \"POST /api/auth/logout HTTP/1.1\" 200 31 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:37:19"}
+{"level":"warn","message":"No token provided in authenticateToken","service":"user-service","timestamp":"2024-09-29 01:37:24"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:37:24 +0000] \"PATCH /api/auth/change-password HTTP/1.1\" 401 29 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:37:24"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-09-29 01:37:27"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:37:27 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:37:27"}
+{"level":"info","message":"Password changed for user: %s","service":"user-service","timestamp":"2024-09-29 01:37:31"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:37:31 +0000] \"PATCH /api/auth/change-password HTTP/1.1\" 200 43 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:37:31"}
+{"level":"warn","message":"Invalid password for username: %s","service":"user-service","timestamp":"2024-09-29 01:37:35"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:37:35 +0000] \"POST /api/auth/login HTTP/1.1\" 400 31 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:37:35"}
+{"level":"info","message":"Password changed for user: %s","service":"user-service","timestamp":"2024-09-29 01:37:43"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:37:43 +0000] \"PATCH /api/auth/change-password HTTP/1.1\" 200 43 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:37:43"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-09-29 01:37:49"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:37:49 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:37:49"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:38:02 +0000] \"PUT /api/user/update-user HTTP/1.1\" 400 34 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:38:02"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:38:10 +0000] \"GET /api/user/current-user HTTP/1.1\" 200 447 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:38:10"}
+{"level":"info","message":"Verification code sent to email: %s","service":"user-service","timestamp":"2024-09-29 01:38:15"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:38:15 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 200 49 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:38:15"}
+{"level":"warn","message":"Too many registration attempts from IP: %s","service":"user-service","timestamp":"2024-09-29 01:38:44"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:38:44 +0000] \"POST /api/auth/register HTTP/1.1\" 429 83 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:38:44"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:43:18"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:43:19"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:43:19"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:43:23"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:43:24"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:43:24"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:43:38"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:43:40"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:43:40"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:44:54"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:44:54"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:44:54"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:45:12"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:45:13"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:45:13"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:45:13"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:45:14"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:45:14"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:45:31"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:45:33"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:45:33"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:46:52"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:46:53"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:46:53"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:47:05"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:47:05"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:47:05"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:47:13"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:47:14"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:47:14"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:47:23"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:47:24"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:47:24"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-09-29 01:47:48"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:47:48 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:47:48"}
+{"level":"info","message":"Fetched current user: %s","service":"user-service","timestamp":"2024-09-29 01:47:54"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:47:54 +0000] \"GET /api/user/current-user HTTP/1.1\" 200 253 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:47:54"}
+{"level":"info","message":"User profile updated: %s","service":"user-service","timestamp":"2024-09-29 01:47:59"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:47:59 +0000] \"PUT /api/user/update-user HTTP/1.1\" 200 47 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:47:59"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:48:11 +0000] \"GET /api/boards HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:48:11"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:48:17 +0000] \"POST /api/boards/create HTTP/1.1\" 201 232 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:48:17"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:48:19 +0000] \"GET /api/boards HTTP/1.1\" 200 234 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:48:19"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:49:59"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:50:00"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:50:00"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:50:15"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:50:16"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:50:16"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-09-29 01:50:29"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-09-29 01:50:29"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-09-29 01:50:29"}
+{"level":"info","message":"Fetched current user: %s","service":"user-service","timestamp":"2024-09-29 01:51:15"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:51:15 +0000] \"GET /api/user/current-user HTTP/1.1\" 200 253 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:51:15"}
+{"level":"info","message":"User profile updated: %s","service":"user-service","timestamp":"2024-09-29 01:51:18"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:51:18 +0000] \"PUT /api/user/update-user HTTP/1.1\" 200 47 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:51:18"}
+{"level":"warn","message":"Validation errors in updateUsername: %o","service":"user-service","timestamp":"2024-09-29 01:51:23"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:51:23 +0000] \"PUT /api/user/update-user HTTP/1.1\" 400 131 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:51:23"}
+{"level":"info","message":"User profile updated: %s","service":"user-service","timestamp":"2024-09-29 01:51:35"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:51:35 +0000] \"PUT /api/user/update-user HTTP/1.1\" 200 47 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:51:35"}
+{"level":"info","message":"Fetched current user: %s","service":"user-service","timestamp":"2024-09-29 01:51:39"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:51:39 +0000] \"GET /api/user/current-user HTTP/1.1\" 200 246 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:51:39"}
+{"level":"info","message":"User profile updated: %s","service":"user-service","timestamp":"2024-09-29 01:51:47"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:51:47 +0000] \"PUT /api/user/update-user HTTP/1.1\" 200 47 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:51:47"}
+{"level":"info","message":"Fetched current user: %s","service":"user-service","timestamp":"2024-09-29 01:51:50"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:51:50 +0000] \"GET /api/user/current-user HTTP/1.1\" 200 246 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:51:50"}
+{"level":"info","message":"User profile updated: %s","service":"user-service","timestamp":"2024-09-29 01:52:03"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:52:03 +0000] \"PUT /api/user/update-user HTTP/1.1\" 200 47 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:52:03"}
+{"level":"info","message":"Fetched all boards","service":"user-service","timestamp":"2024-09-29 01:52:08"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:52:08 +0000] \"GET /api/boards HTTP/1.1\" 200 234 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:52:08"}
+{"level":"info","message":"Board fetched: %s","service":"user-service","timestamp":"2024-09-29 01:52:16"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:52:16 +0000] \"GET /api/boards/66f8f830b7f76aaae195a236 HTTP/1.1\" 200 232 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:52:16"}
+{"level":"info","message":"Boards fetched for user: %s","service":"user-service","timestamp":"2024-09-29 01:52:19"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:52:19 +0000] \"GET /api/boards/myboards HTTP/1.1\" 200 234 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:52:19"}
+{"level":"info","message":"Board updated by user %s: %s","service":"user-service","timestamp":"2024-09-29 01:52:27"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:52:27 +0000] \"PUT /api/boards/66f8f830b7f76aaae195a236 HTTP/1.1\" 200 277 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:52:27"}
+{"level":"info","message":"Board deleted by user %s: %s","service":"user-service","timestamp":"2024-09-29 01:52:32"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:52:32 +0000] \"DELETE /api/boards/66f8f830b7f76aaae195a236 HTTP/1.1\" 200 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:52:32"}
+{"level":"info","message":"Fetched all boards","service":"user-service","timestamp":"2024-09-29 01:52:35"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:52:35 +0000] \"GET /api/boards HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:52:35"}
+{"level":"info","message":"Fetched all boards","service":"user-service","timestamp":"2024-09-29 01:53:15"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:53:15 +0000] \"GET /api/boards HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:53:15"}
+{"level":"info","message":"Board created by user %s: %s","service":"user-service","timestamp":"2024-09-29 01:53:17"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:53:17 +0000] \"POST /api/boards/create HTTP/1.1\" 201 271 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:53:17"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:53:25 +0000] \"GET /api/posts HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:53:25"}
+{"level":"http","message":"::1 - - [29/Sep/2024:06:53:30 +0000] \"GET /api/posts/board/66f8f95d9a0e08264fc7c74a HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-09-29 01:53:30"}
