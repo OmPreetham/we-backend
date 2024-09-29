@@ -1,4 +1,6 @@
-import mongoose from 'mongoose'
+// models/Bookmark.js
+
+import mongoose from 'mongoose';
 
 const bookmarkSchema = new mongoose.Schema(
   {
@@ -13,9 +15,12 @@ const bookmarkSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
-)
+  {
+    timestamps: true,
+  }
+);
 
-const Bookmark = mongoose.model('Bookmark', bookmarkSchema)
+// Prevent duplicate bookmarks by the same user on the same post
+bookmarkSchema.index({ user: 1, post: 1 }, { unique: true });
 
-export default Bookmark
+export default mongoose.model('Bookmark', bookmarkSchema);

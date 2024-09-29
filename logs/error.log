@@ -1,0 +1,8 @@
+{"level":"error","message":"Redis error: %o","service":"user-service","timestamp":"2024-09-29 12:19:40"}
+{"level":"error","message":"Redis error: %o","service":"user-service","timestamp":"2024-09-29 12:19:47"}
+{"level":"error","message":"Redis error in authRoutes: %o","service":"user-service","timestamp":"2024-09-29 12:19:50"}
+{"level":"error","message":"Redis error: %o","service":"user-service","timestamp":"2024-09-29 12:20:27"}
+{"level":"error","message":"Redis error: %o","service":"user-service","timestamp":"2024-09-29 12:20:34"}
+{"level":"error","message":"Redis error in authRoutes: %o","service":"user-service","timestamp":"2024-09-29 12:20:40"}
+{"level":"error","message":"Error in requestVerificationCodeController: %o","service":"user-service","timestamp":"2024-09-29 12:37:42"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-09-29 12:43:40"}
