@@ -1,4 +1,5 @@
 // controllers/authController.js
+
 import { validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -7,12 +8,22 @@ import User from '../models/User.js';
 import VerificationCode from '../models/VerificationCode.js';
 import transporter from '../config/nodemailer.js';
 import { generateOTP } from '../utils/generateOTP.js';
-import { hashEmail, encryptData } from '../utils/encryption.js'
-import BlacklistedToken from '../models/BacklistedToken.js'
+import { hashEmail, encryptData } from '../utils/encryption.js';
+import BlacklistedToken from '../models/BacklistedToken.js';
 import logger from '../config/logger.js';
 
 dotenv.config();
 
+/**
+ * 1. Public Controllers
+ *    - Accessible without authentication
+ */
+
+/**
+ * @desc    Request Verification Code
+ * @route   POST /auth/requestverificationcode
+ * @access  Public
+ */
 export const requestVerificationCodeController = async (req, res) => {
   const { email } = req.body;
 
@@ -67,6 +78,11 @@ export const requestVerificationCodeController = async (req, res) => {
   }
 };
 
+/**
+ * @desc    Register New User
+ * @route   POST /auth/register
+ * @access  Public
+ */
 export const registerController = async (req, res) => {
   const { code, username, password } = req.body;
 
@@ -109,11 +125,15 @@ export const registerController = async (req, res) => {
       return res.status(400).json({ error: 'Email is already registered' });
     }
 
+    // Hash the password before saving
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     // Create the new user
     const newUser = new User({
       username,
       email: encryptedEmail,
-      password,
+      password: hashedPassword,
     });
 
     await newUser.save();
@@ -134,6 +154,11 @@ export const registerController = async (req, res) => {
   }
 };
 
+/**
+ * @desc    User Login
+ * @route   POST /auth/login
+ * @access  Public
+ */
 export const loginController = async (req, res) => {
   const { email, username, password } = req.body;
 
@@ -208,6 +233,11 @@ export const loginController = async (req, res) => {
   }
 };
 
+/**
+ * @desc    Refresh Access Token
+ * @route   POST /auth/refresh-token
+ * @access  Public
+ */
 export const refreshTokenController = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
 
@@ -246,6 +276,16 @@ export const refreshTokenController = async (req, res) => {
   }
 };
 
+/**
+ * 2. Protected Controllers
+ *    - Accessible only with valid authentication
+ */
+
+/**
+ * @desc    Logout User
+ * @route   POST /auth/logout
+ * @access  Protected
+ */
 export const logoutController = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
   const accessToken = req.cookies.accessToken;
@@ -301,6 +341,11 @@ export const logoutController = async (req, res) => {
   }
 };
 
+/**
+ * @desc    Change User Password
+ * @route   PATCH /auth/change-password
+ * @access  Protected
+ */
 export const changePasswordController = async (req, res) => {
   const { oldPassword, newPassword } = req.body;
 
@@ -328,7 +373,10 @@ export const changePasswordController = async (req, res) => {
     }
 
     // Hash the new password before saving
-    user.password = newPassword;
+    const salt = await bcrypt.genSalt(10);
+    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
+
+    user.password = hashedNewPassword;
     await user.save();
 
     res.status(200).json({ message: 'Password changed successfully' });

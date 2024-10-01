@@ -6,3 +6,47 @@
 {"level":"error","message":"Redis error in authRoutes: %o","service":"user-service","timestamp":"2024-09-29 12:20:40"}
 {"level":"error","message":"Error in requestVerificationCodeController: %o","service":"user-service","timestamp":"2024-09-29 12:37:42"}
 {"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-09-29 12:43:40"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 01:05:36"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 01:06:17"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 01:14:57"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:19:30"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:19:46"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:19:47"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:20:34"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:21:39"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 01:22:20"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:22:26"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:22:56"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:23:35"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:24:22"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:24:29"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:25:40"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:25:41"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:25:44"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:26:09"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:26:30"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:26:51"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:26:52"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:27:52"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:28:12"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:28:33"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:28:34"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:28:34"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:28:42"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 01:28:43"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 01:28:52"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 01:28:53"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 02:09:19"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 02:09:27"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 02:10:25"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 02:10:26"}
+{"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-01 02:11:10"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-10-01 02:14:22"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 02:15:45"}
+{"level":"error","message":"Error in getFollowingPosts: %o","service":"user-service","timestamp":"2024-10-01 02:16:11"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 02:20:44"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-10-01 02:22:50"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 02:23:18"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 02:24:18"}
+{"level":"error","message":"Error in getFollowingPosts: %o","service":"user-service","timestamp":"2024-10-01 02:24:29"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-01 02:30:14"}

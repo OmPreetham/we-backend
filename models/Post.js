@@ -35,6 +35,14 @@ const PostSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    commentCount: {
+      type: Number,
+      default: 0,
+    },
+    viewCount: {
+      type: Number,
+      default: 0,
+    },
     board: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Board',
@@ -45,5 +53,11 @@ const PostSchema = new mongoose.Schema(
     timestamps: true, // Automatically add createdAt and updatedAt fields
   }
 );
+
+// Indexes to optimize queries
+PostSchema.index({ createdAt: -1 });
+PostSchema.index({ upvoteCount: -1 });
+PostSchema.index({ trendingScore: -1 });
+PostSchema.index({ board: 1, createdAt: -1 });
 
 export default mongoose.model('Post', PostSchema);

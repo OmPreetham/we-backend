@@ -13,10 +13,14 @@ import {
   getPosts,
   getPostById,
   getPostsByBoard,
+  getTrendingPosts,
+  getFollowingPosts,
 } from '../controllers/postController.js';
 import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
+
+// 1. Static Routes
 
 // Create a new post
 router.post(
@@ -43,6 +47,63 @@ router.post(
       .withMessage('Username must be between 3 and 20 characters'),
   ],
   createPost
+);
+
+// Get trending posts
+router.get(
+  '/trending',
+  [
+    query('limit')
+      .optional()
+      .isInt({ min: 1 })
+      .withMessage('Limit must be a positive integer'),
+  ],
+  getTrendingPosts
+);
+
+// Get following posts
+router.get(
+  '/following',
+  authenticateToken,
+  [
+    query('page').optional().isInt({ min: 1 }).withMessage('Page must be a positive integer'),
+    query('limit').optional().isInt({ min: 1 }).withMessage('Limit must be a positive integer'),
+  ],
+  getFollowingPosts
+);
+
+// Get all bookmarked posts for the authenticated user
+router.get('/bookmarks', authenticateToken, getBookmarkedPosts);
+
+// 2. Parameterized Routes
+
+// Get a post by ID
+router.get(
+  '/:id',
+  [param('id').isMongoId().withMessage('Invalid Post ID')],
+  getPostById
+);
+
+// Get posts by board ID
+router.get(
+  '/board/:boardId',
+  [
+    param('boardId').isMongoId().withMessage('Invalid Board ID'),
+    query('page').optional().isInt({ min: 1 }).withMessage('Page must be a positive integer'),
+    query('limit').optional().isInt({ min: 1 }).withMessage('Limit must be a positive integer'),
+  ],
+  getPostsByBoard
+);
+
+// Get posts with optional board filtering
+router.get(
+  '/',
+  [
+    query('page').optional().isInt({ min: 1 }).withMessage('Page must be a positive integer'),
+    query('limit').optional().isInt({ min: 1 }).withMessage('Limit must be a positive integer'),
+    query('boardId').optional().isMongoId().withMessage('Invalid Board ID'),
+  ],
+  getPosts
 );
 
 // Reply to a post
@@ -88,44 +149,12 @@ router.post(
   bookmarkPost
 );
 
-// Get all bookmarked posts for the authenticated user
-router.get('/bookmarks', authenticateToken, getBookmarkedPosts);
-
 // Delete a post
 router.delete(
   '/:id/delete',
   authenticateToken,
   [param('id').isMongoId().withMessage('Invalid Post ID')],
   deletePost
-);
-
-// Get posts with optional board filtering
-router.get(
-  '/',
-  [
-    query('page').optional().isInt({ min: 1 }).withMessage('Page must be a positive integer'),
-    query('limit').optional().isInt({ min: 1 }).withMessage('Limit must be a positive integer'),
-    query('boardId').optional().isMongoId().withMessage('Invalid Board ID'),
-  ],
-  getPosts
-);
-
-// Get a post by ID
-router.get(
-  '/:id',
-  [param('id').isMongoId().withMessage('Invalid Post ID')],
-  getPostById
-);
-
-// Get posts by board ID
-router.get(
-  '/board/:boardId',
-  [
-    param('boardId').isMongoId().withMessage('Invalid Board ID'),
-    query('page').optional().isInt({ min: 1 }).withMessage('Page must be a positive integer'),
-    query('limit').optional().isInt({ min: 1 }).withMessage('Limit must be a positive integer'),
-  ],
-  getPostsByBoard
 );
 
 export default router;

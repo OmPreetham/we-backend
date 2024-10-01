@@ -11,12 +11,19 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Routes for authenticated users
+// 1. Public Routes (If Any)
+// Currently, all routes are protected. If you have any public user-related routes in the future, place them here.
 
-// Get current authenticated user
-router.get('/current-user', authenticateToken, getCurrentUser);
+// 2. Protected Routes (Authentication Required)
 
-// Update authenticated user's profile
+// Get Current Authenticated User
+router.get(
+  '/current-user',
+  authenticateToken,
+  getCurrentUser
+);
+
+// Update Authenticated User's Profile
 router.put(
   '/update-user',
   authenticateToken,
@@ -31,7 +38,11 @@ router.put(
   updateUsername
 );
 
-// Delete authenticated user's account
-router.delete('/delete-user', authenticateToken, deleteUserAccount);
+// Delete Authenticated User's Account
+router.delete(
+  '/delete-user',
+  authenticateToken,
+  deleteUserAccount
+);
 
 export default router;

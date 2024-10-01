@@ -9,13 +9,15 @@ import {
   getAllBoards,
   getBoardsByUser,
   getBoardById,
+  followBoard,
+  unfollowBoard,
+  getFollowedBoards,
 } from '../controllers/boardController.js';
 import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Get all boards (public)
-router.get('/', getAllBoards);
+// 1. Static Routes
 
 // Create a new board (authenticated)
 router.post(
@@ -36,8 +38,32 @@ router.post(
   createBoard
 );
 
+// Get all boards (public)
+router.get('/', getAllBoards);
+
+// Get following boards
+router.get('/following', authenticateToken, getFollowedBoards);
+
 // Get boards by authenticated user
 router.get('/myboards', authenticateToken, getBoardsByUser);
+
+// 2. Parameterized Routes
+
+// Follow a board
+router.post(
+  '/:boardId/follow',
+  authenticateToken,
+  [param('boardId').isMongoId().withMessage('Invalid Board ID')],
+  followBoard
+);
+
+// Unfollow a board
+router.delete(
+  '/:boardId/unfollow',
+  authenticateToken,
+  [param('boardId').isMongoId().withMessage('Invalid Board ID')],
+  unfollowBoard
+);
 
 // Get a board by ID (public)
 router.get(

@@ -1,10 +1,19 @@
 // controllers/userController.js
 
-import User from '../models/User.js';
 import { validationResult } from 'express-validator';
+import User from '../models/User.js';
 import logger from '../config/logger.js';
 
-// Get Current Authenticated User
+/**
+ * 1. Protected Controllers
+ *    - Accessible only with valid authentication
+ */
+
+/**
+ * @desc    Get Current Authenticated User
+ * @route   GET /users/current-user
+ * @access  Protected
+ */
 export const getCurrentUser = async (req, res) => {
   try {
     const userId = req.user.userId; // Get the userId from the authenticated request
@@ -23,7 +32,11 @@ export const getCurrentUser = async (req, res) => {
   }
 };
 
-// Update User Profile
+/**
+ * @desc    Update User Profile
+ * @route   PUT /users/update-user
+ * @access  Protected
+ */
 export const updateUsername = async (req, res) => {
   // Input validation
   const errors = validationResult(req);
@@ -67,7 +80,11 @@ export const updateUsername = async (req, res) => {
   }
 };
 
-// Delete User Account
+/**
+ * @desc    Delete User Account
+ * @route   DELETE /users/delete-user
+ * @access  Protected
+ */
 export const deleteUserAccount = async (req, res) => {
   try {
     const userId = req.user.userId; // Get the userId from the authenticated request

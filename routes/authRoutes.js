@@ -1,4 +1,5 @@
 // routes/authRoutes.js
+
 import express from 'express';
 import { body } from 'express-validator';
 import { RateLimiterRedis } from 'rate-limiter-flexible';
@@ -18,6 +19,8 @@ import logger from '../config/logger.js';
 dotenv.config();
 
 const router = express.Router();
+
+// 1. Configure Redis Client and Rate Limiters
 
 // Configure Redis client
 const redisClient = new Redis({
@@ -72,6 +75,7 @@ const registerRateLimiter = new RateLimiterRedis({
   blockDuration: 60 * 60, // Block for 1 hour if consumed more than points
 });
 
+// Middleware to use rate limiter for registration
 const registerRateLimiterMiddleware = (req, res, next) => {
   registerRateLimiter
     .consume(req.ip)
@@ -100,6 +104,7 @@ const verificationCodeRateLimiter = new RateLimiterRedis({
   blockDuration: 10 * 60, // Block for 10 minutes if consumed more than points
 });
 
+// Middleware to use rate limiter for verification code requests
 const verificationCodeRateLimiterMiddleware = (req, res, next) => {
   verificationCodeRateLimiter
     .consume(req.ip)
@@ -119,13 +124,17 @@ const verificationCodeRateLimiterMiddleware = (req, res, next) => {
     });
 };
 
-// Routes with Rate Limiters
+// 2. Public Routes (No Authentication Required)
 
 // Request Verification Code Route
 router.post(
   '/requestverificationcode',
   verificationCodeRateLimiterMiddleware,
-  [body('email').isEmail().withMessage('Valid email is required')],
+  [
+    body('email')
+      .isEmail()
+      .withMessage('Valid email is required'),
+  ],
   requestVerificationCodeController
 );
 
@@ -134,9 +143,17 @@ router.post(
   '/register',
   registerRateLimiterMiddleware,
   [
-    body('code').notEmpty().withMessage('Verification code is required'),
-    body('username').isAlphanumeric().withMessage('Username must be alphanumeric'),
-    body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
+    body('code')
+      .notEmpty()
+      .withMessage('Verification code is required'),
+    body('username')
+      .isAlphanumeric()
+      .withMessage('Username must be alphanumeric')
+      .isLength({ min: 3, max: 20 })
+      .withMessage('Username must be between 3 and 20 characters'),
+    body('password')
+      .isLength({ min: 8 })
+      .withMessage('Password must be at least 8 characters'),
   ],
   registerController
 );
@@ -146,30 +163,40 @@ router.post(
   '/login',
   loginRateLimiterMiddleware,
   [
-    body('email').isEmail().withMessage('Valid email is required'),
-    body('username').isAlphanumeric().withMessage('Username must be alphanumeric'),
-    body('password').notEmpty().withMessage('Password is required'),
+    body('email')
+      .isEmail()
+      .withMessage('Valid email is required'),
+    body('username')
+      .isAlphanumeric()
+      .withMessage('Username must be alphanumeric'),
+    body('password')
+      .notEmpty()
+      .withMessage('Password is required'),
   ],
   loginController
 );
 
-// Logout Route
-router.post('/logout', logoutController);
+// Refresh Token Route
+router.post('/refresh-token', refreshTokenController);
 
-// Change Password Route (Protected)
+// 3. Protected Routes (Authentication Required)
+
+// Logout Route
+router.post('/logout', authenticateToken, logoutController);
+
+// Change Password Route
 router.patch(
   '/change-password',
   authenticateToken,
   [
-    body('oldPassword').notEmpty().withMessage('Old password is required'),
+    body('oldPassword')
+      .notEmpty()
+      .withMessage('Old password is required'),
     body('newPassword')
       .isLength({ min: 8 })
       .withMessage('New password must be at least 8 characters'),
   ],
   changePasswordController
 );
-
-// Refresh Token Route
-router.post('/refresh-token', refreshTokenController);
 
 export default router;
