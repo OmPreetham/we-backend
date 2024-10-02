@@ -865,3 +865,207 @@
 {"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-01 02:40:35"}
 {"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-01 02:40:36"}
 {"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-01 02:40:36"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:53:56"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:53:56"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:53:56"}
+{"level":"info","message":"Posts fetched with query: %o","service":"user-service","timestamp":"2024-10-02 12:54:02"}
+{"level":"http","message":"::1 - - [02/Oct/2024:17:54:02 +0000] \"GET /api/posts HTTP/1.1\" 200 2951 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 12:54:02"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 12:54:05"}
+{"level":"http","message":"::1 - - [02/Oct/2024:17:54:05 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 12:54:05"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:57:07"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:57:08"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:57:08"}
+{"level":"info","message":"Fetched posts for trending: %o","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"http","message":"::1 - - [02/Oct/2024:17:57:10 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 12:57:10"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:57:23"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:57:24"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:57:24"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:58:18"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:58:18"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:58:18"}
+{"level":"info","message":"Fetched posts for trending: %o","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"http","message":"::1 - - [02/Oct/2024:17:58:21 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 12:58:21"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:58:50"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:58:51"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:58:51"}
+{"level":"info","message":"Fetched posts for trending: %o","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"http","message":"::1 - - [02/Oct/2024:17:58:54 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 12:58:54"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:59:28"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:59:29"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:59:29"}
+{"level":"info","message":"Fetched posts for trending: %o","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"info","message":"Post: %s, Score: %d","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"error","message":"Error fetching trending posts: %s","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"error","message":"Error stack: %s","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"http","message":"::1 - - [02/Oct/2024:17:59:30 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 12:59:30"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:59:39"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:59:40"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:59:40"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:59:46"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:59:47"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:59:47"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:59:53"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:59:54"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:59:54"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 12:59:56"}
+{"level":"http","message":"::1 - - [02/Oct/2024:17:59:56 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 12:59:56"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 12:59:57"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 12:59:58"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 12:59:58"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:00:40"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:00:41"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:00:41"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 13:00:42"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:00:42 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:00:42"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:00:53"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:00:54"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:00:54"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:01:10"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:01:11"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:01:11"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 13:01:13"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:01:13 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:01:13"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:01:24"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:01:24"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:01:24"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 13:04:41"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:04:41 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:04:41"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:05:44"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:05:44"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:05:44"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 13:05:47"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:05:47 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:05:47"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:06:00"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:06:00"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:06:00"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:06:33"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:06:34"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:06:34"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:06:42"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:06:42"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:06:42"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 13:06:44"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:06:44 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:06:44"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:06:49"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:06:50"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:06:50"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:06:58"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:06:59"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:06:59"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:07:03"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:07:03"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:07:03"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 13:07:09"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:07:09 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:07:09"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:07:19"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:07:19"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:07:19"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 13:07:21"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:07:21 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:07:21"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:07:27"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:07:28"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:07:28"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:07:32"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:07:33"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:07:33"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 13:07:36"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:07:36 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:07:36"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:07:48"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:07:49"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:07:49"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:08:23"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:08:24"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:08:24"}
+{"level":"error","message":"Error fetching trending posts: %o","service":"user-service","timestamp":"2024-10-02 13:08:25"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:08:25 +0000] \"GET /api/posts/trending HTTP/1.1\" 500 40 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:08:25"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:08:36"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:08:37"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:08:37"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:08:52"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:08:53"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:08:53"}
+{"level":"info","message":"Trending posts fetched and cached","service":"user-service","timestamp":"2024-10-02 13:08:54"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:08:54 +0000] \"GET /api/posts/trending HTTP/1.1\" 200 3156 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:08:54"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:09:24"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:09:25"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:09:25"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:09:55"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:09:56"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:09:56"}
+{"level":"info","message":"Trending posts fetched and cached","service":"user-service","timestamp":"2024-10-02 13:09:57"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:09:57 +0000] \"GET /api/posts/trending HTTP/1.1\" 200 3155 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:09:57"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:10:03"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:10:04"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:10:04"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:10:08"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:10:09"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:10:09"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:10:10"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:10:11"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:10:11"}
+{"level":"info","message":"Trending posts fetched from cache","service":"user-service","timestamp":"2024-10-02 13:10:13"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:10:13 +0000] \"GET /api/posts/trending HTTP/1.1\" 200 3155 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:10:13"}
+{"level":"warn","message":"No token provided in authenticateToken","service":"user-service","timestamp":"2024-10-02 13:10:30"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:10:30 +0000] \"GET /api/boards/following HTTP/1.1\" 401 29 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:10:30"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:10:34"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:10:34"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:10:34"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-10-02 13:10:46"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:10:46 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:10:46"}
+{"level":"info","message":"Fetched current user: %s","service":"user-service","timestamp":"2024-10-02 13:10:53"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:10:53 +0000] \"GET /api/user/current-user HTTP/1.1\" 200 237 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:10:53"}
+{"level":"info","message":"Fetched all boards","service":"user-service","timestamp":"2024-10-02 13:10:56"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:10:56 +0000] \"GET /api/boards HTTP/1.1\" 200 1418 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:10:56"}
+{"level":"info","message":"Fetched followed boards for user %s","service":"user-service","timestamp":"2024-10-02 13:11:01"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:11:01 +0000] \"GET /api/boards/following HTTP/1.1\" 200 847 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:11:01"}
+{"level":"info","message":"Boards fetched for user: %s","service":"user-service","timestamp":"2024-10-02 13:11:11"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:11:11 +0000] \"GET /api/boards/myboards HTTP/1.1\" 200 1146 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:11:11"}
+{"level":"info","message":"Board fetched: %s","service":"user-service","timestamp":"2024-10-02 13:11:13"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:11:13 +0000] \"GET /api/boards/66f99147fcf4a7560a64f0b9 HTTP/1.1\" 200 271 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:11:13"}
+{"level":"info","message":"Fetched all boards","service":"user-service","timestamp":"2024-10-02 13:11:19"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:11:19 +0000] \"GET /api/boards HTTP/1.1\" 200 1418 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:11:19"}
+{"level":"info","message":"Fetched followed boards for user %s","service":"user-service","timestamp":"2024-10-02 13:11:25"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:11:25 +0000] \"GET /api/boards/following HTTP/1.1\" 200 847 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:11:25"}
+{"level":"info","message":"User %s followed board %s","service":"user-service","timestamp":"2024-10-02 13:11:42"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:11:42 +0000] \"POST /api/boards/66fba25a2c3bd0e2234d325f/follow HTTP/1.1\" 201 45 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:11:42"}
+{"level":"info","message":"Fetched all boards","service":"user-service","timestamp":"2024-10-02 13:11:45"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:11:45 +0000] \"GET /api/boards HTTP/1.1\" 200 1418 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:11:45"}
+{"level":"info","message":"Boards fetched for user: %s","service":"user-service","timestamp":"2024-10-02 13:11:48"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:11:48 +0000] \"GET /api/boards/myboards HTTP/1.1\" 200 1146 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:11:48"}
+{"level":"info","message":"Fetched followed boards for user %s","service":"user-service","timestamp":"2024-10-02 13:11:51"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:11:51 +0000] \"GET /api/boards/following HTTP/1.1\" 200 1140 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:11:51"}
+{"level":"info","message":"Fetched following posts for user %s","service":"user-service","timestamp":"2024-10-02 13:12:00"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:12:00 +0000] \"GET /api/posts/following HTTP/1.1\" 200 3026 \"-\" \"PostmanRuntime/7.42.0\"","service":"user-service","timestamp":"2024-10-02 13:12:00"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:12:24"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:12:25"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:12:25"}

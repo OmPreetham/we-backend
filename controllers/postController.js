@@ -82,12 +82,10 @@ export const getTrendingPosts = async (req, res) => {
 
     // Limit the number of posts returned
     const trendingPosts = postsWithScore.slice(0, limit);
+    console.log('Trending posts:', trendingPosts);
 
     // Cache the trending posts for 5 minutes
-    await redisClient.set(cacheKey, JSON.stringify(trendingPosts), {
-      EX: 300, // Cache expires in 300 seconds (5 minutes)
-    });
-
+    await redisClient.set(cacheKey, JSON.stringify(trendingPosts), 'EX', 300); // Cache expires in 300 seconds (5 minutes)
     res.status(200).json(trendingPosts);
     logger.info('Trending posts fetched and cached');
   } catch (error) {
