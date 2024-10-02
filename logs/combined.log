@@ -1069,3 +1069,135 @@
 {"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:12:24"}
 {"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:12:25"}
 {"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:12:25"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:13:07"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:13:07"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:13:07"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-10-02 13:24:58"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:24:58 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:24:58"}
+{"level":"info","message":"User logged out: %s","service":"user-service","timestamp":"2024-10-02 13:26:36"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:26:36 +0000] \"POST /api/auth/logout HTTP/1.1\" 200 31 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:26:36"}
+{"level":"info","message":"Verification code sent to email: %s","service":"user-service","timestamp":"2024-10-02 13:27:53"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:27:53 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 200 49 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:27:53"}
+{"level":"warn","message":"Email is already registered: %s","service":"user-service","timestamp":"2024-10-02 13:28:33"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:28:33 +0000] \"POST /api/auth/register HTTP/1.1\" 400 39 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:28:33"}
+{"level":"warn","message":"Email is already registered: %s","service":"user-service","timestamp":"2024-10-02 13:28:43"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:28:43 +0000] \"POST /api/auth/register HTTP/1.1\" 400 39 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:28:43"}
+{"level":"warn","message":"Email is already registered: %s","service":"user-service","timestamp":"2024-10-02 13:28:44"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:28:44 +0000] \"POST /api/auth/register HTTP/1.1\" 400 39 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:28:44"}
+{"level":"warn","message":"Email is already registered: %s","service":"user-service","timestamp":"2024-10-02 13:28:45"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:28:45 +0000] \"POST /api/auth/register HTTP/1.1\" 400 39 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:28:45"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:29:06"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:29:07"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:29:07"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:29:33"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:29:34"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:29:34"}
+{"level":"info","message":"User registered successfully: %s","service":"user-service","timestamp":"2024-10-02 13:29:38"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:29:38 +0000] \"POST /api/auth/register HTTP/1.1\" 201 42 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:29:38"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:29:53"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:29:54"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:29:54"}
+{"level":"warn","message":"Invalid password for username: %s","service":"user-service","timestamp":"2024-10-02 13:30:10"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:30:10 +0000] \"POST /api/auth/login HTTP/1.1\" 400 31 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:30:10"}
+{"level":"warn","message":"Invalid password for username: %s","service":"user-service","timestamp":"2024-10-02 13:30:12"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:30:12 +0000] \"POST /api/auth/login HTTP/1.1\" 400 31 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:30:12"}
+{"level":"info","message":"Verification code sent to email: %s","service":"user-service","timestamp":"2024-10-02 13:30:40"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:30:40 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 200 49 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:30:40"}
+{"level":"info","message":"User registered successfully: %s","service":"user-service","timestamp":"2024-10-02 13:31:17"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:31:17 +0000] \"POST /api/auth/register HTTP/1.1\" 201 42 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:31:17"}
+{"level":"warn","message":"Invalid password for username: %s","service":"user-service","timestamp":"2024-10-02 13:31:39"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:31:39 +0000] \"POST /api/auth/login HTTP/1.1\" 400 31 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:31:39"}
+{"level":"warn","message":"Invalid password for username: %s","service":"user-service","timestamp":"2024-10-02 13:31:40"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:31:40 +0000] \"POST /api/auth/login HTTP/1.1\" 400 31 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:31:40"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:31:54"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:31:55"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:31:55"}
+{"level":"info","message":"Verification code sent to email: %s","service":"user-service","timestamp":"2024-10-02 13:32:15"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:32:15 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 200 49 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:32:15"}
+{"level":"error","message":"Error in registerController: %o","service":"user-service","timestamp":"2024-10-02 13:33:07"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:33:07 +0000] \"POST /api/auth/register HTTP/1.1\" 500 53 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:33:07"}
+{"level":"error","message":"Error in registerController: %o","service":"user-service","timestamp":"2024-10-02 13:33:09"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:33:09 +0000] \"POST /api/auth/register HTTP/1.1\" 500 53 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:33:09"}
+{"level":"error","message":"Error in registerController: %o","service":"user-service","timestamp":"2024-10-02 13:33:10"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:33:10 +0000] \"POST /api/auth/register HTTP/1.1\" 500 53 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:33:10"}
+{"level":"info","message":"Connected to Redis","service":"user-service","timestamp":"2024-10-02 13:33:29"}
+{"level":"info","message":"Connected to MongoDB","service":"user-service","timestamp":"2024-10-02 13:33:30"}
+{"level":"info","message":"Server running on PORT: 5500","service":"user-service","timestamp":"2024-10-02 13:33:30"}
+{"level":"info","message":"User registered successfully: %s","service":"user-service","timestamp":"2024-10-02 13:33:31"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:33:31 +0000] \"POST /api/auth/register HTTP/1.1\" 201 42 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:33:31"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-10-02 13:34:00"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:34:00 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:34:00"}
+{"level":"info","message":"User logged out: %s","service":"user-service","timestamp":"2024-10-02 13:34:24"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:34:24 +0000] \"POST /api/auth/logout HTTP/1.1\" 200 31 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:34:24"}
+{"level":"info","message":"Verification code sent to email: %s","service":"user-service","timestamp":"2024-10-02 13:41:56"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:41:56 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 200 49 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:41:56"}
+{"level":"warn","message":"Verification code already sent to email: %s","service":"user-service","timestamp":"2024-10-02 13:43:45"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:43:45 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 95 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:43:45"}
+{"level":"warn","message":"Verification code already sent to email: %s","service":"user-service","timestamp":"2024-10-02 13:46:29"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:46:29 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 95 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:46:29"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:46:30"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:46:30 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:46:30"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:46:31"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:46:31 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:46:31"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:46:31"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:46:31 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:46:31"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:46:32"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:46:32 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:46:32"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:46:34"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:46:34 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:46:34"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:46:46"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:46:46 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:46:46"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:46:47"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:46:47 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:46:47"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:46:57"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:46:57 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:46:57"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-10-02 13:47:29"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:47:29 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:47:29"}
+{"level":"info","message":"User logged out: %s","service":"user-service","timestamp":"2024-10-02 13:48:57"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:48:57 +0000] \"POST /api/auth/logout HTTP/1.1\" 200 31 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:48:57"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:49:09"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:49:09 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:49:09"}
+{"level":"info","message":"Verification code sent to email: %s","service":"user-service","timestamp":"2024-10-02 13:57:32"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:57:32 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 200 49 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:57:32"}
+{"level":"warn","message":"Verification code already sent to email: %s","service":"user-service","timestamp":"2024-10-02 13:58:01"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:58:01 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 95 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:58:01"}
+{"level":"warn","message":"Verification code already sent to email: %s","service":"user-service","timestamp":"2024-10-02 13:58:04"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:58:04 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 95 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:58:04"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:58:05"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:58:05 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:58:05"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:58:06"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:58:06 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:58:06"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:58:06"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:58:06 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:58:06"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:58:06"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:58:06 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:58:06"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 13:58:07"}
+{"level":"http","message":"::1 - - [02/Oct/2024:18:58:07 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 13:58:07"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 14:03:11"}
+{"level":"http","message":"::1 - - [02/Oct/2024:19:03:11 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:03:11"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 14:03:12"}
+{"level":"http","message":"::1 - - [02/Oct/2024:19:03:12 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:03:12"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-10-02 14:03:36"}
+{"level":"http","message":"::1 - - [02/Oct/2024:19:03:36 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:03:36"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-10-02 14:07:43"}
+{"level":"http","message":"::ffff:192.168.5.84 - - [02/Oct/2024:19:07:43 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:07:43"}
+{"level":"info","message":"User logged out: %s","service":"user-service","timestamp":"2024-10-02 14:07:48"}
+{"level":"http","message":"::ffff:192.168.5.84 - - [02/Oct/2024:19:07:48 +0000] \"POST /api/auth/logout HTTP/1.1\" 200 31 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:07:48"}
+{"level":"info","message":"User logged in: %s","service":"user-service","timestamp":"2024-10-02 14:12:54"}
+{"level":"http","message":"::ffff:192.168.5.68 - - [02/Oct/2024:19:12:54 +0000] \"POST /api/auth/login HTTP/1.1\" 200 30 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:12:54"}
+{"level":"info","message":"User logged out: %s","service":"user-service","timestamp":"2024-10-02 14:13:02"}
+{"level":"http","message":"::ffff:192.168.5.68 - - [02/Oct/2024:19:13:02 +0000] \"POST /api/auth/logout HTTP/1.1\" 200 31 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:13:02"}
+{"level":"info","message":"Verification code sent to email: %s","service":"user-service","timestamp":"2024-10-02 14:13:13"}
+{"level":"http","message":"::ffff:192.168.5.68 - - [02/Oct/2024:19:13:13 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 200 49 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:13:13"}
+{"level":"warn","message":"Verification code already sent to email: %s","service":"user-service","timestamp":"2024-10-02 14:13:42"}
+{"level":"http","message":"::ffff:192.168.5.68 - - [02/Oct/2024:19:13:42 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 95 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:13:42"}
+{"level":"info","message":"Verification code sent to email: %s","service":"user-service","timestamp":"2024-10-02 14:24:31"}
+{"level":"http","message":"::ffff:192.168.5.84 - - [02/Oct/2024:19:24:31 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 200 49 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:24:31"}
+{"level":"warn","message":"Verification code already sent to email: %s","service":"user-service","timestamp":"2024-10-02 14:24:46"}
+{"level":"http","message":"::ffff:192.168.5.84 - - [02/Oct/2024:19:24:46 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 95 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:24:46"}
+{"level":"warn","message":"Verification code already sent to email: %s","service":"user-service","timestamp":"2024-10-02 14:25:37"}
+{"level":"http","message":"::ffff:192.168.5.84 - - [02/Oct/2024:19:25:37 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 95 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:25:37"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 14:27:03"}
+{"level":"http","message":"::ffff:192.168.5.84 - - [02/Oct/2024:19:27:03 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:27:03"}
+{"level":"warn","message":"Too many verification code requests from IP: %s","service":"user-service","timestamp":"2024-10-02 14:29:34"}
+{"level":"http","message":"::ffff:192.168.5.84 - - [02/Oct/2024:19:29:34 +0000] \"POST /api/auth/requestverificationcode HTTP/1.1\" 429 83 \"-\" \"we/1 CFNetwork/1568.100.1 Darwin/24.0.0\"","service":"user-service","timestamp":"2024-10-02 14:29:34"}

@@ -117,23 +117,11 @@ export const registerController = async (req, res) => {
     const hashedEmail = hashEmail(verificationCode.email);
     const encryptedEmail = encryptData(hashedEmail);
 
-    // Check if the email is already registered
-    const existingEmail = await User.findOne({ email: encryptedEmail });
-
-    if (existingEmail) {
-      logger.warn('Email is already registered: %s', verificationCode.email);
-      return res.status(400).json({ error: 'Email is already registered' });
-    }
-
-    // Hash the password before saving
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
     // Create the new user
     const newUser = new User({
       username,
       email: encryptedEmail,
-      password: hashedPassword,
+      password: password,
     });
 
     await newUser.save();
