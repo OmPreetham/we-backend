@@ -360,11 +360,7 @@ export const changePasswordController = async (req, res) => {
       return res.status(400).json({ error: 'Old password is incorrect' });
     }
 
-    // Hash the new password before saving
-    const salt = await bcrypt.genSalt(10);
-    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
-
-    user.password = hashedNewPassword;
+    user.password = newPassword;
     await user.save();
 
     res.status(200).json({ message: 'Password changed successfully' });
