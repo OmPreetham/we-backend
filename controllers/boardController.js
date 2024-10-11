@@ -58,7 +58,7 @@ export const getBoardById = async (req, res) => {
 /**
  * @desc    Create a New Board
  * @route   POST /boards/create
- * @access  Protected
+ * @access  Protected (admin or moderator)
  */
 export const createBoard = async (req, res) => {
   // Input validation
@@ -70,7 +70,7 @@ export const createBoard = async (req, res) => {
 
   try {
     const { title, description } = req.body;
-    const userId = req.user.userId; // Get the userId from authenticated request
+    const { userId } = req.user;
 
     const board = new Board({
       title,
@@ -89,13 +89,13 @@ export const createBoard = async (req, res) => {
 };
 
 /**
- * @desc    Get Boards by Authenticated User
+ * @desc    Get Boards Created by Authenticated User
  * @route   GET /boards/myboards
- * @access  Protected
+ * @access  Protected (admin or moderator)
  */
 export const getBoardsByUser = async (req, res) => {
   try {
-    const userId = req.user.userId; // Get the userId from authenticated request
+    const userId = req.user.userId;
 
     const boards = await Board.find({ user: userId });
     res.status(200).json(boards);
@@ -206,7 +206,7 @@ export const unfollowBoard = async (req, res) => {
 /**
  * @desc    Update a Board
  * @route   PUT /boards/:id
- * @access  Protected
+ * @access  Protected (admin or moderator)
  */
 export const updateBoard = async (req, res) => {
   // Input validation
@@ -219,18 +219,12 @@ export const updateBoard = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, description } = req.body;
-    const userId = req.user.userId; // Get the userId from authenticated request
 
     const board = await Board.findById(id);
 
     if (!board) {
       logger.warn('Board not found for update: %s', id);
       return res.status(404).json({ error: 'Board not found' });
-    }
-
-    if (board.user.toString() !== userId) {
-      logger.warn('Unauthorized update attempt by user %s on board %s', userId, id);
-      return res.status(403).json({ error: 'You are unauthorized to update this board' });
     }
 
     // Update fields if provided
@@ -240,7 +234,7 @@ export const updateBoard = async (req, res) => {
     const updatedBoard = await board.save();
 
     res.status(200).json(updatedBoard);
-    logger.info('Board updated by user %s: %s', userId, id);
+    logger.info('Board updated: %s', id);
   } catch (error) {
     logger.error('Error updating board: %o', error);
     res.status(500).json({ error: 'Error updating board' });
@@ -250,12 +244,11 @@ export const updateBoard = async (req, res) => {
 /**
  * @desc    Delete a Board
  * @route   DELETE /boards/:id
- * @access  Protected
+ * @access  Protected (admin or moderator)
  */
 export const deleteBoard = async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.user.userId; // Get the userId from authenticated request
 
     const board = await Board.findById(id);
 
@@ -264,15 +257,10 @@ export const deleteBoard = async (req, res) => {
       return res.status(404).json({ error: 'Board not found' });
     }
 
-    if (board.user.toString() !== userId) {
-      logger.warn('Unauthorized deletion attempt by user %s on board %s', userId, id);
-      return res.status(403).json({ error: 'You are unauthorized to delete this board' });
-    }
-
     await board.deleteOne();
 
     res.status(200).json({ message: 'Board deleted successfully' });
-    logger.info('Board deleted by user %s: %s', userId, id);
+    logger.info('Board deleted: %s', id);
   } catch (error) {
     logger.error('Error deleting board: %o', error);
     res.status(500).json({ error: 'Error deleting board' });

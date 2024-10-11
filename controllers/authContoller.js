@@ -122,6 +122,7 @@ export const registerController = async (req, res) => {
       username,
       email: encryptedEmail,
       password: password,
+      role: 'user', // Explicitly set the role to 'user'
     });
 
     await newUser.save();

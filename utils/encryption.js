@@ -1,4 +1,6 @@
 import crypto from 'crypto';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Secret keys from environment variables
 const EMAIL_HASH_SECRET_KEY = process.env.EMAIL_HASH_SECRET_KEY; // Must be a secure, random string

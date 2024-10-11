@@ -46,9 +46,14 @@ export const updateUsername = async (req, res) => {
   }
 
   try {
-    const userId = req.user.userId; // Get the userId from the authenticated request
-    const { username } = req.body;
+    const userId = req.user.userId;
+    const { username, role } = req.body;
 
+    // Prevent users from updating their role
+    if (role) {
+      logger.warn('User %s attempted to change their role', userId);
+      return res.status(403).json({ error: 'You cannot change your role' });
+    }
     // Find the user by ID
     const user = await User.findById(userId);
 

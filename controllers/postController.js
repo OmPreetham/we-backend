@@ -466,7 +466,7 @@ export const getFollowingPosts = async (req, res) => {
 export const deletePost = async (req, res) => {
   try {
     const { id } = req.params;
-    const { userId } = req.user;
+    const { userId, role } = req.user;
 
     const post = await Post.findById(id);
 
@@ -475,8 +475,13 @@ export const deletePost = async (req, res) => {
       return res.status(404).json({ error: 'Post not found' });
     }
 
-    if (post.user.toString() !== userId) {
-      logger.warn('Unauthorized delete attempt by user %s on post %s', userId, id);
+    if (post.user.toString() !== userId && role !== 'moderator' && role !== 'admin') {
+      logger.warn(
+        'Unauthorized delete attempt by user %s (role: %s) on post %s',
+        userId,
+        role,
+        id
+      );
       return res.status(403).json({ error: 'Unauthorized' });
     }
 
@@ -484,14 +489,11 @@ export const deletePost = async (req, res) => {
     await Upvote.deleteMany({ post: id });
     await Downvote.deleteMany({ post: id });
 
-    // Optionally, delete any replies to this post
-    // await Post.deleteMany({ parentPost: id });
-
     // Delete the post itself
     await post.deleteOne();
 
     res.status(200).json({ message: 'Post deleted successfully' });
-    logger.info('Post deleted by user %s: %s', userId, id);
+    logger.info('Post deleted by user %s (role: %s): %s', userId, role, id);
   } catch (error) {
     logger.error('Error deleting post: %o', error);
     res.status(500).json({ error: 'Failed to delete post' });
