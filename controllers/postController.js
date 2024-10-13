@@ -113,7 +113,7 @@ export const createPost = async (req, res) => {
   }
 
   try {
-    const { content, parentPostId, boardId, username: newUsername } = req.body;
+    const { title, content, parentPostId, boardId, username: newUsername } = req.body;
     const { userId, username } = req.user;
 
     // Validate Board
@@ -136,6 +136,7 @@ export const createPost = async (req, res) => {
     }
 
     const newPost = new Post({
+      title,
       content,
       user: userId,
       username: newUsername || username,
@@ -168,7 +169,7 @@ export const replyToPost = async (req, res) => {
 
   try {
     const { id } = req.params;
-    const { content, username: newUsername } = req.body;
+    const { title, content, username: newUsername } = req.body;
     const { userId, username } = req.user;
 
     const parentPost = await Post.findById(id);
@@ -178,6 +179,7 @@ export const replyToPost = async (req, res) => {
     }
 
     const replyPost = new Post({
+      title,
       content,
       user: userId,
       username: newUsername || username,

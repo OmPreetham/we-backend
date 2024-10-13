@@ -18,6 +18,12 @@ import { authorizeRoles } from '../middleware/authorize.js';
 
 const router = express.Router();
 
+// Utility function to validate hex color codes
+const isHexColor = (value) => /^#([0-9A-F]{3}){1,2}$/i.test(value);
+
+// Optionally, define a list of allowed system image names
+const allowedSystemImages = ['star', 'circle', 'square', 'triangle']; // Example list
+
 // 1. Public Routes (No Authentication Required)
 
 // Get all boards (public)
@@ -37,7 +43,11 @@ router.get(
 // Get a board by ID (public)
 router.get(
   '/:id',
-  [param('id').isMongoId().withMessage('Invalid board ID')],
+  [
+    param('id')
+      .isMongoId()
+      .withMessage('Invalid board ID'),
+  ],
   getBoardById
 );
 
@@ -47,7 +57,11 @@ router.get(
 router.post(
   '/:boardId/follow',
   authenticateToken,
-  [param('boardId').isMongoId().withMessage('Invalid Board ID')],
+  [
+    param('boardId')
+      .isMongoId()
+      .withMessage('Invalid Board ID'),
+  ],
   followBoard
 );
 
@@ -55,11 +69,13 @@ router.post(
 router.delete(
   '/:boardId/unfollow',
   authenticateToken,
-  [param('boardId').isMongoId().withMessage('Invalid Board ID')],
+  [
+    param('boardId')
+      .isMongoId()
+      .withMessage('Invalid Board ID'),
+  ],
   unfollowBoard
 );
-
-
 
 // Create a new board (moderator or admin only)
 router.post(
@@ -77,6 +93,14 @@ router.post(
       .withMessage('Description is required')
       .isLength({ max: 500 })
       .withMessage('Description cannot exceed 500 characters'),
+    body('symbolColor')
+      .optional()
+      .custom(isHexColor)
+      .withMessage('symbolColor must be a valid hex color code'),
+    body('systemImageName')
+      .optional()
+      .isIn(allowedSystemImages)
+      .withMessage(`systemImageName must be one of: ${allowedSystemImages.join(', ')}`),
   ],
   createBoard
 );
@@ -87,7 +111,9 @@ router.put(
   authenticateToken,
   authorizeRoles('admin', 'moderator'),
   [
-    param('id').isMongoId().withMessage('Invalid board ID'),
+    param('id')
+      .isMongoId()
+      .withMessage('Invalid board ID'),
     body('title')
       .optional()
       .isLength({ max: 100 })
@@ -96,6 +122,14 @@ router.put(
       .optional()
       .isLength({ max: 500 })
       .withMessage('Description cannot exceed 500 characters'),
+    body('symbolColor')
+      .optional()
+      .custom(isHexColor)
+      .withMessage('symbolColor must be a valid hex color code'),
+    body('systemImageName')
+      .optional()
+      .isIn(allowedSystemImages)
+      .withMessage(`systemImageName must be one of: ${allowedSystemImages.join(', ')}`),
   ],
   updateBoard
 );
@@ -105,7 +139,11 @@ router.delete(
   '/:id',
   authenticateToken,
   authorizeRoles('admin', 'moderator'),
-  [param('id').isMongoId().withMessage('Invalid board ID')],
+  [
+    param('id')
+      .isMongoId()
+      .withMessage('Invalid board ID'),
+  ],
   deleteBoard
 );
 

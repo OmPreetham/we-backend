@@ -1,5 +1,3 @@
-// models/Board.js
-
 import mongoose from 'mongoose';
 
 const boardSchema = new mongoose.Schema(
@@ -20,6 +18,17 @@ const boardSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
+    },
+    symbolColor: {
+      type: String,
+      required: true,
+      default: '#000000', // Set a default color, can be any hex code or color representation
+    },
+    systemImageName: {
+      type: String,
+      required: true,
+      trim: true,
+      default: 'star', // Example default system image name
     },
   },
   {

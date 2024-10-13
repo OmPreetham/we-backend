@@ -17,7 +17,7 @@ import logger from '../config/logger.js';
  */
 export const getAllBoards = async (req, res) => {
   try {
-    const boards = await Board.find();
+    const boards = await Board.find().populate('user', 'username email'); // Optionally populate user details
     res.status(200).json(boards);
     logger.info('Fetched all boards');
   } catch (error) {
@@ -35,7 +35,7 @@ export const getBoardById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const board = await Board.findById(id);
+    const board = await Board.findById(id).populate('user', 'username email');
 
     if (!board) {
       logger.warn('Board not found: %s', id);
@@ -69,13 +69,15 @@ export const createBoard = async (req, res) => {
   }
 
   try {
-    const { title, description } = req.body;
+    const { title, description, symbolColor, systemImageName } = req.body;
     const { userId } = req.user;
 
     const board = new Board({
       title,
       description,
       user: userId,
+      symbolColor: symbolColor || '#000000', // Use default if not provided
+      systemImageName: systemImageName || 'star', // Use default if not provided
     });
 
     const savedBoard = await board.save();
@@ -97,7 +99,7 @@ export const getBoardsByUser = async (req, res) => {
   try {
     const userId = req.user.userId;
 
-    const boards = await Board.find({ user: userId });
+    const boards = await Board.find({ user: userId }).populate('user', 'username email');
     res.status(200).json(boards);
     logger.info('Boards fetched for user: %s', userId);
   } catch (error) {
@@ -115,7 +117,10 @@ export const getFollowedBoards = async (req, res) => {
   try {
     const userId = req.user.userId;
 
-    const follows = await Follow.find({ user: userId }).populate('board');
+    const follows = await Follow.find({ user: userId }).populate({
+      path: 'board',
+      populate: { path: 'user', select: 'username email' },
+    });
     const boards = follows.map((follow) => follow.board);
 
     res.status(200).json(boards);
@@ -218,7 +223,7 @@ export const updateBoard = async (req, res) => {
 
   try {
     const { id } = req.params;
-    const { title, description } = req.body;
+    const { title, description, symbolColor, systemImageName } = req.body;
 
     const board = await Board.findById(id);
 
@@ -230,6 +235,8 @@ export const updateBoard = async (req, res) => {
     // Update fields if provided
     if (title) board.title = title;
     if (description) board.description = description;
+    if (symbolColor) board.symbolColor = symbolColor;
+    if (systemImageName) board.systemImageName = systemImageName;
 
     const updatedBoard = await board.save();
 
