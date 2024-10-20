@@ -33,6 +33,13 @@ export const requestVerificationCodeController = async (req, res) => {
     logger.warn('Validation errors in requestVerificationCodeController: %o', errors.array());
     return res.status(400).json({ errors: errors.array() });
   }
+  // Check if the email ends with @islander.tamucc.edu
+  if (!email.toLowerCase().endsWith('@islander.tamucc.edu')) {
+    logger.warn('Invalid email domain attempted: %s', email);
+    return res.status(400).json({
+      error: 'Please use a valid @islander.tamucc.edu email address.'
+    });
+  }
 
   try {
     // Check if a verification code already exists and is still valid
