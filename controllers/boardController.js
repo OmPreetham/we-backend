@@ -17,7 +17,7 @@ import logger from '../config/logger.js';
  */
 export const getAllBoards = async (req, res) => {
   try {
-    const boards = await Board.find().populate('user', 'username email'); // Optionally populate user details
+    const boards = await Board.find() // Optionally populate user details
     res.status(200).json(boards);
     logger.info('Fetched all boards');
   } catch (error) {
@@ -35,7 +35,7 @@ export const getBoardById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const board = await Board.findById(id).populate('user', 'username email');
+    const board = await Board.findById(id)
 
     if (!board) {
       logger.warn('Board not found: %s', id);
@@ -99,7 +99,7 @@ export const getBoardsByUser = async (req, res) => {
   try {
     const userId = req.user.userId;
 
-    const boards = await Board.find({ user: userId }).populate('user', 'username email');
+    const boards = await Board.find({ user: userId })
     res.status(200).json(boards);
     logger.info('Boards fetched for user: %s', userId);
   } catch (error) {
@@ -117,10 +117,7 @@ export const getFollowedBoards = async (req, res) => {
   try {
     const userId = req.user.userId;
 
-    const follows = await Follow.find({ user: userId }).populate({
-      path: 'board',
-      populate: { path: 'user', select: 'username email' },
-    });
+    const follows = await Follow.find({ user: userId }).populate({path: 'board'});
     const boards = follows.map((follow) => follow.board);
 
     res.status(200).json(boards);

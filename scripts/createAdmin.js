@@ -15,8 +15,8 @@ const createAdminUser = async () => {
     await mongoose.connect(URI, {});
 
     const username = 'tamuccAdmin'; // Set your desired admin username
-    const password = 'ShinjiIkari@Unit01'; // Set a strong password
-    const email = 'admin@tamucc.edu'; // Use a valid email
+    const password = 'Password@123'; // Set a strong password
+    const email = 'admin@islander.tamucc.edu'; // Use a valid email
 
     // Hash and encrypt the email
     const hashedEmail = hashEmail(email);

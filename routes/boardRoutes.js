@@ -22,7 +22,35 @@ const router = express.Router();
 const isHexColor = (value) => /^#([0-9A-F]{3}){1,2}$/i.test(value);
 
 // Optionally, define a list of allowed system image names
-const allowedSystemImages = ['star', 'circle', 'square', 'triangle']; // Example list
+const allowedSystemImages = [
+  // Basic Shapes
+  "star.fill", "circle.fill", "square.fill", "triangle.fill", "hexagon.fill", "octagon.fill", "pentagon.fill",
+
+  // Education & Professional
+  "graduationcap.fill", "book.fill", "briefcase.fill", "building.columns.fill", "studentdesk", "chart.bar.fill", 
+  "person.crop.circle.fill", "person.fill", "person.3.fill", "signature", 
+
+  // Technology & Tools
+  "desktopcomputer", "laptopcomputer", "printer.fill", "camera.fill", "lock.fill", "keyboard.fill", "network",
+
+  // Communication & Social
+  "message.fill", "phone.fill", "envelope.fill", "bubble.left.fill", "person.2.fill", "person.3.fill", 
+
+  // Travel & Daily Life
+  "airplane", "car.fill", "bicycle", "map.fill", "globe.americas.fill", "calendar", "tray.fill", "ruler.fill",
+
+  // Nature & Elements
+  "leaf.fill", "sun.max.fill", "moon.fill", "cloud.fill", "drop.fill", "flame.fill", "wind",
+
+  // Food & Drink
+  "cup.and.saucer.fill", "fork.knife.fill", "wineglass.fill", "carrot.fill", "applelogo",
+
+  // Health & Fitness
+  "heart.fill", "bandage.fill", "staroflife.fill", "stethoscope.fill", "hare.fill", "tortoise.fill",
+
+  // Miscellaneous
+  "magnifyingglass", "paperclip", "bookmark.fill", "globe", "person.crop.circle.badge.checkmark", "creditcard.fill"
+];
 
 // 1. Public Routes (No Authentication Required)
 
