@@ -17,7 +17,7 @@ import logger from '../config/logger.js';
  */
 export const getAllBoards = async (req, res) => {
   try {
-    const boards = await Board.find() // Optionally populate user details
+    const boards = await Board.find().populate('user', 'id username role'); // Populate user details
     res.status(200).json(boards);
     logger.info('Fetched all boards');
   } catch (error) {
@@ -35,7 +35,7 @@ export const getBoardById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const board = await Board.findById(id)
+    const board = await Board.findById(id).populate('user', 'id username role'); // Populate user details
 
     if (!board) {
       logger.warn('Board not found: %s', id);
@@ -82,6 +82,9 @@ export const createBoard = async (req, res) => {
 
     const savedBoard = await board.save();
 
+    // Populate user's id, username, and role
+    await savedBoard.populate('user', 'id username role')
+
     res.status(201).json(savedBoard);
     logger.info('Board created by user %s: %s', userId, savedBoard._id);
   } catch (error) {
@@ -99,7 +102,7 @@ export const getBoardsByUser = async (req, res) => {
   try {
     const userId = req.user.userId;
 
-    const boards = await Board.find({ user: userId })
+    const boards = await Board.find({ user: userId }).populate('user', 'id username role'); // Populate user details
     res.status(200).json(boards);
     logger.info('Boards fetched for user: %s', userId);
   } catch (error) {
@@ -117,7 +120,14 @@ export const getFollowedBoards = async (req, res) => {
   try {
     const userId = req.user.userId;
 
-    const follows = await Follow.find({ user: userId }).populate({path: 'board'});
+    const follows = await Follow.find({ user: userId })
+      .populate({
+        path: 'board',
+        populate: {
+          path: 'user',
+          select: 'id username role'
+        }
+      });
     const boards = follows.map((follow) => follow.board);
 
     res.status(200).json(boards);
@@ -204,6 +214,9 @@ export const updateBoard = async (req, res) => {
     if (systemImageName) board.systemImageName = systemImageName;
 
     const updatedBoard = await board.save();
+
+    // Populate user's id, username, and role
+    await updatedBoard.populate('user', 'id username role');
 
     res.status(200).json(updatedBoard);
     logger.info('Board updated: %s', id);

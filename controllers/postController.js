@@ -29,8 +29,8 @@ export const getPostById = async (req, res) => {
     await Post.findByIdAndUpdate(id, { $inc: { viewCount: 1 } });
 
     const post = await Post.findById(id)
-      .populate('user', 'username')
-      .populate('board', 'title description');
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user') // Exclude the user field from board
 
     if (!post) {
       logger.warn('Post not found in getPostById: %s', id);
@@ -67,8 +67,8 @@ export const getTrendingPosts = async (req, res) => {
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
     const posts = await Post.find({ createdAt: { $gte: oneWeekAgo } })
-      .populate('user', 'username')
-      .populate('board', 'title')
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user') // Exclude the user field from board
       .lean(); // Use lean() for faster read
 
     // Calculate trending score for each post
@@ -383,8 +383,8 @@ export const getPosts = async (req, res) => {
       .sort({ createdAt: -1 })
       .skip(startIndex)
       .limit(Number(limit))
-      .populate('user', 'username')
-      .populate('board', 'title');
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user') // Exclude the user field from board
 
     res.status(200).json(posts);
     logger.info('Posts fetched with query: %o', query);
@@ -415,7 +415,8 @@ export const getPostsByBoard = async (req, res) => {
       .sort({ createdAt: -1 })
       .skip(startIndex)
       .limit(Number(limit))
-      .populate('user', 'username');
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user') // Exclude the user field from board
 
     res.status(200).json(posts);
     logger.info('Posts fetched for board: %s', boardId);
@@ -449,8 +450,8 @@ export const getFollowingPosts = async (req, res) => {
       .sort({ createdAt: -1 })
       .skip(startIndex)
       .limit(Number(limit))
-      .populate('user', 'username')
-      .populate('board', 'title');
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user') // Exclude the user field from board
 
     res.status(200).json(posts);
     logger.info('Fetched following posts for user %s', userId);

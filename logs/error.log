@@ -89,3 +89,19 @@
 {"level":"error","message":"Redis error in authRoutes: %o","service":"user-service","timestamp":"2024-10-21 02:27:29"}
 {"level":"error","message":"Redis error in authRoutes: %o","service":"user-service","timestamp":"2024-10-21 02:27:29"}
 {"level":"error","message":"Redis error in authRoutes: %o","service":"user-service","timestamp":"2024-10-21 02:27:29"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:30:05"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:30:34"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:30:41"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:41:04"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:41:11"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:41:20"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:41:30"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:42:05"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:42:14"}
+{"level":"error","message":"Error populating board user details: %o","service":"user-service","timestamp":"2024-10-28 04:42:48"}
+{"level":"error","message":"Error populating board user details: %o","service":"user-service","timestamp":"2024-10-28 04:42:53"}
+{"level":"error","message":"Error populating board user details: %o","service":"user-service","timestamp":"2024-10-28 04:43:43"}
+{"level":"error","message":"Error populating board user details: %o","service":"user-service","timestamp":"2024-10-28 04:43:45"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:56:42"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:56:45"}
+{"level":"error","message":"Error updating board: %o","service":"user-service","timestamp":"2024-10-28 04:56:48"}
