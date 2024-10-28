@@ -9,8 +9,7 @@ import {
   getAllBoards,
   getBoardsByUser,
   getBoardById,
-  followBoard,
-  unfollowBoard,
+  toggleFollowBoard,
   getFollowedBoards,
 } from '../controllers/boardController.js';
 import { authenticateToken } from '../middleware/auth.js';
@@ -73,28 +72,16 @@ router.get(
 
 // 2. Protected Routes (Authentication Required)
 
-// Follow a board
+// Toggle follow/unfollow a board
 router.post(
-  '/:boardId/follow',
+  '/:boardId/toggleFollow',
   authenticateToken,
   [
     param('boardId')
       .isMongoId()
       .withMessage('Invalid Board ID'),
   ],
-  followBoard
-);
-
-// Unfollow a board
-router.delete(
-  '/:boardId/unfollow',
-  authenticateToken,
-  [
-    param('boardId')
-      .isMongoId()
-      .withMessage('Invalid Board ID'),
-  ],
-  unfollowBoard
+  toggleFollowBoard
 );
 
 // Create a new board (moderator or admin only)

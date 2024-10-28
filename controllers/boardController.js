@@ -129,15 +129,15 @@ export const getFollowedBoards = async (req, res) => {
 };
 
 /**
- * @desc    Follow a Board
- * @route   POST /boards/:boardId/follow
+ * @desc    Toggle Follow/Unfollow a Board
+ * @route   POST /boards/:boardId/toggleFollow
  * @access  Protected
  */
-export const followBoard = async (req, res) => {
+export const toggleFollowBoard = async (req, res) => {
   // Input validation
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    logger.warn('Validation errors in followBoard: %o', errors.array());
+    logger.warn('Validation errors in toggleFollowBoard: %o', errors.array());
     return res.status(400).json({ errors: errors.array() });
   }
 
@@ -148,60 +148,28 @@ export const followBoard = async (req, res) => {
     // Check if the board exists
     const board = await Board.findById(boardId);
     if (!board) {
-      logger.warn('Board not found in followBoard: %s', boardId);
+      logger.warn('Board not found in toggleFollowBoard: %s', boardId);
       return res.status(404).json({ error: 'Board not found' });
     }
 
     // Check if the user is already following the board
     const existingFollow = await Follow.findOne({ user: userId, board: boardId });
+
     if (existingFollow) {
-      logger.warn('User %s is already following board %s', userId, boardId);
-      return res.status(400).json({ error: 'You are already following this board' });
+      // Unfollow the board
+      await existingFollow.deleteOne();
+      res.status(200).json({ message: 'Successfully unfollowed the board' });
+      logger.info('User %s unfollowed board %s', userId, boardId);
+    } else {
+      // Follow the board
+      const follow = new Follow({ user: userId, board: boardId });
+      await follow.save();
+      res.status(201).json({ message: 'Successfully followed the board' });
+      logger.info('User %s followed board %s', userId, boardId);
     }
-
-    // Create a new follow document
-    const follow = new Follow({ user: userId, board: boardId });
-    await follow.save();
-
-    res.status(201).json({ message: 'Successfully followed the board' });
-    logger.info('User %s followed board %s', userId, boardId);
   } catch (error) {
-    logger.error('Error in followBoard: %o', error);
-    res.status(500).json({ error: 'Failed to follow the board' });
-  }
-};
-
-/**
- * @desc    Unfollow a Board
- * @route   DELETE /boards/:boardId/unfollow
- * @access  Protected
- */
-export const unfollowBoard = async (req, res) => {
-  // Input validation
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    logger.warn('Validation errors in unfollowBoard: %o', errors.array());
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  try {
-    const { boardId } = req.params;
-    const userId = req.user.userId;
-
-    // Check if the follow relationship exists
-    const follow = await Follow.findOne({ user: userId, board: boardId });
-    if (!follow) {
-      logger.warn('User %s is not following board %s', userId, boardId);
-      return res.status(400).json({ error: 'You are not following this board' });
-    }
-
-    await follow.deleteOne();
-
-    res.status(200).json({ message: 'Successfully unfollowed the board' });
-    logger.info('User %s unfollowed board %s', userId, boardId);
-  } catch (error) {
-    logger.error('Error in unfollowBoard: %o', error);
-    res.status(500).json({ error: 'Failed to unfollow the board' });
+    logger.error('Error in toggleFollowBoard: %o', error);
+    res.status(500).json({ error: 'Failed to toggle follow status for the board' });
   }
 };
 
