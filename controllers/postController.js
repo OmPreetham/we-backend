@@ -338,32 +338,32 @@ export const bookmarkPost = async (req, res) => {
  * @access  Protected
  */
 export const getBookmarkedPosts = async (req, res) => {
-  const userId = req.user.userId;
-  const cacheKey = `user:${userId}:bookmarkedPosts`;
-
   try {
-    // Attempt to get cached bookmarks
-    const cachedBookmarkedPosts = await redisClient.get(cacheKey);
-    if (cachedBookmarkedPosts) {
-      logger.info('Retrieved bookmarked posts from cache for user %s', userId);
-      return res.status(200).json(JSON.parse(cachedBookmarkedPosts));
+    const { userId } = req.user;
+    const { page = 1, limit = 10 } = req.query;
+    const startIndex = (page - 1) * limit;
+
+    // Find the posts the user has bookmarked
+    const bookmarks = await Bookmark.find({ user: userId }).select('post');
+    const bookmarkedPostIds = bookmarks.map((bookmark) => bookmark.post);
+
+    if (bookmarkedPostIds.length === 0) {
+      return res.status(200).json([]);
     }
 
-    // Fetch bookmarks from the database
-    const bookmarks = await Bookmark.find({ user: userId })
-      .populate('post')
-      .lean();
+    // Fetch posts from the bookmarked posts
+    const posts = await Post.find({ _id: { $in: bookmarkedPostIds } })
+      .sort({ createdAt: -1 })
+      .skip(startIndex)
+      .limit(Number(limit))
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user') // Exclude the user field from board
 
-    const bookmarkedPosts = bookmarks.map((bookmark) => bookmark.post);
-
-    // Cache the results
-    await redisClient.set(cacheKey, JSON.stringify(bookmarkedPosts), 'EX', 3600);
-
-    res.status(200).json(bookmarkedPosts);
-    logger.info('Bookmarked posts fetched for user %s', userId);
+    res.status(200).json(posts);
+    logger.info('Fetched bookmarked posts for user %s', userId);
   } catch (error) {
-    logger.error('Error retrieving bookmarked posts: %o', error);
-    res.status(500).json({ error: 'Error retrieving bookmarked posts' });
+    logger.error('Error in getBookmarkedPosts: %o', error);
+    res.status(500).json({ error: 'Failed to get bookmarked posts' });
   }
 };
 
@@ -415,8 +415,8 @@ export const getPostsByBoard = async (req, res) => {
       .sort({ createdAt: -1 })
       .skip(startIndex)
       .limit(Number(limit))
-      .populate('user', 'id username role') // User details
-      .populate('board', '-user') // Exclude the user field from board
+      .populate('user', 'id username role') // Populate user details
+      .populate('board', '-user') // Populate board details, excluding user field
 
     res.status(200).json(posts);
     logger.info('Posts fetched for board: %s', boardId);
