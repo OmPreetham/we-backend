@@ -146,7 +146,7 @@ export const createPost = async (req, res) => {
     });
 
     await newPost.save();
-    res.status(201).json(newPost);
+    res.status(201).json({ success: "New Post Created" });
     logger.info('Post created by user %s: %s', userId, newPost._id);
   } catch (error) {
     logger.error('Error creating post: %o', error);
