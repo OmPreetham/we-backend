@@ -333,6 +333,31 @@ export const bookmarkPost = async (req, res) => {
 };
 
 /**
+ * @desc    Check if a Post is Bookmarked by the Authenticated User
+ * @route   GET /posts/:id/isBookmarked
+ * @access  Protected
+ */
+export const isPostBookmarkedByUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.userId;
+
+    const existingBookmark = await Bookmark.findOne({ user: userId, post: id });
+
+    if (existingBookmark) {
+      res.status(200).json({ isBookmarked: true });
+      logger.info('Post %s is bookmarked by user %s', id, userId);
+    } else {
+      res.status(200).json({ isBookmarked: false });
+      logger.info('Post %s is not bookmarked by user %s', id, userId);
+    }
+  } catch (error) {
+    logger.error('Error in isPostBookmarkedByUser: %o', error);
+    res.status(500).json({ error: 'Error checking bookmark status' });
+  }
+};
+
+/**
  * @desc    Get All Bookmarked Posts for Authenticated User
  * @route   GET /posts/bookmarks
  * @access  Protected

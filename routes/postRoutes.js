@@ -15,6 +15,7 @@ import {
   getPostsByBoard,
   getTrendingPosts,
   getFollowingPosts,
+  isPostBookmarkedByUser,
 } from '../controllers/postController.js';
 import { authenticateToken } from '../middleware/auth.js';
 
@@ -74,6 +75,14 @@ router.get(
 
 // Get all bookmarked posts for the authenticated user
 router.get('/bookmarks', authenticateToken, getBookmarkedPosts);
+
+// Check if a post is bookmarked by the authenticated user
+router.get(
+  '/:id/isBookmarked',
+  authenticateToken,
+  [param('id').isMongoId().withMessage('Invalid Post ID')],
+  isPostBookmarkedByUser
+);
 
 // 2. Parameterized Routes
 
