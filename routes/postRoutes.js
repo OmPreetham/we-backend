@@ -16,6 +16,10 @@ import {
   getTrendingPosts,
   getFollowingPosts,
   isPostBookmarkedByUser,
+  getUserPosts,
+  getUserReplies,
+  getUserUpvotes,
+  getUserDownvotes,
 } from '../controllers/postController.js';
 import { authenticateToken } from '../middleware/auth.js';
 
@@ -164,6 +168,34 @@ router.delete(
   authenticateToken,
   [param('id').isMongoId().withMessage('Invalid Post ID')],
   deletePost
+);
+
+// Get a user's posts
+router.get(
+  '/user/:userId',
+  [param('userId').isMongoId().withMessage('Invalid User ID')],
+  getUserPosts
+);
+
+// Get a user's replies
+router.get(
+  '/user/:userId/replies',
+  [param('userId').isMongoId().withMessage('Invalid User ID')],
+  getUserReplies
+);
+
+// Get a user's upvoted posts
+router.get(
+  '/user/:userId/upvotes',
+  [param('userId').isMongoId().withMessage('Invalid User ID')],
+  getUserUpvotes
+);
+
+// Get a user's downvoted posts
+router.get(
+  '/user/:userId/downvotes',
+  [param('userId').isMongoId().withMessage('Invalid User ID')],
+  getUserDownvotes
 );
 
 export default router;

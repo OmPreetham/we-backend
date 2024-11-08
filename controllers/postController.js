@@ -527,3 +527,113 @@ export const deletePost = async (req, res) => {
     res.status(500).json({ error: 'Failed to delete post' });
   }
 };
+
+/**
+ * @desc    Get User's Posts
+ * @route   GET /posts/user/:userId
+ * @access  Public
+ */
+export const getUserPosts = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { page = 1, limit = 10 } = req.query;
+    const startIndex = (page - 1) * limit;
+
+    const posts = await Post.find({ user: userId })
+      .sort({ createdAt: -1 })
+      .skip(startIndex)
+      .limit(Number(limit))
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user');
+
+    res.status(200).json(posts);
+    logger.info('Posts fetched for user: %s', userId);
+  } catch (error) {
+    logger.error('Error fetching user posts: %o', error);
+    res.status(500).json({ error: 'Failed to get user posts' });
+  }
+};
+
+/**
+ * @desc    Get User's Replies
+ * @route   GET /posts/user/:userId/replies
+ * @access  Public
+ */
+export const getUserReplies = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { page = 1, limit = 10 } = req.query;
+    const startIndex = (page - 1) * limit;
+
+    const replies = await Post.find({ user: userId, parentPost: { $ne: null } })
+      .sort({ createdAt: -1 })
+      .skip(startIndex)
+      .limit(Number(limit))
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user');
+
+    res.status(200).json(replies);
+    logger.info('Replies fetched for user: %s', userId);
+  } catch (error) {
+    logger.error('Error fetching user replies: %o', error);
+    res.status(500).json({ error: 'Failed to get user replies' });
+  }
+};
+
+/**
+ * @desc    Get User's Upvoted Posts
+ * @route   GET /posts/user/:userId/upvotes
+ * @access  Public
+ */
+export const getUserUpvotes = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { page = 1, limit = 10 } = req.query;
+    const startIndex = (page - 1) * limit;
+
+    const upvotes = await Upvote.find({ user: userId }).select('post');
+    const upvotedPostIds = upvotes.map((upvote) => upvote.post);
+
+    const posts = await Post.find({ _id: { $in: upvotedPostIds } })
+      .sort({ createdAt: -1 })
+      .skip(startIndex)
+      .limit(Number(limit))
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user');
+
+    res.status(200).json(posts);
+    logger.info('Upvoted posts fetched for user: %s', userId);
+  } catch (error) {
+    logger.error('Error fetching user upvotes: %o', error);
+    res.status(500).json({ error: 'Failed to get user upvotes' });
+  }
+};
+
+/**
+ * @desc    Get User's Downvoted Posts
+ * @route   GET /posts/user/:userId/downvotes
+ * @access  Public
+ */
+export const getUserDownvotes = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { page = 1, limit = 10 } = req.query;
+    const startIndex = (page - 1) * limit;
+
+    const downvotes = await Downvote.find({ user: userId }).select('post');
+    const downvotedPostIds = downvotes.map((downvote) => downvote.post);
+
+    const posts = await Post.find({ _id: { $in: downvotedPostIds } })
+      .sort({ createdAt: -1 })
+      .skip(startIndex)
+      .limit(Number(limit))
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user');
+
+    res.status(200).json(posts);
+    logger.info('Downvoted posts fetched for user: %s', userId);
+  } catch (error) {
+    logger.error('Error fetching user downvotes: %o', error);
+    res.status(500).json({ error: 'Failed to get user downvotes' });
+  }
+};
