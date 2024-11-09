@@ -20,6 +20,7 @@ import {
   getUserReplies,
   getUserUpvotes,
   getUserDownvotes,
+  getPostReplies,
 } from '../controllers/postController.js';
 import { authenticateToken } from '../middleware/auth.js';
 
@@ -196,6 +197,13 @@ router.get(
   '/user/:userId/downvotes',
   [param('userId').isMongoId().withMessage('Invalid User ID')],
   getUserDownvotes
+);
+
+// Get replies to a specific post
+router.get(
+  '/:postId/replies',
+  [param('postId').isMongoId().withMessage('Invalid Post ID')],
+  getPostReplies
 );
 
 export default router;

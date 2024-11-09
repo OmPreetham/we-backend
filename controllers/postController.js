@@ -637,3 +637,37 @@ export const getUserDownvotes = async (req, res) => {
     res.status(500).json({ error: 'Failed to get user downvotes' });
   }
 };
+
+/**
+ * @desc    Get Replies to a Post
+ * @route   GET /posts/:postId/replies
+ * @access  Public
+ */
+export const getPostReplies = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const { page = 1, limit = 10 } = req.query;
+    const startIndex = (page - 1) * limit;
+
+    // Check if the post exists
+    const post = await Post.findById(postId);
+    if (!post) {
+      logger.warn('Post not found in getPostReplies: %s', postId);
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    // Fetch replies to the post
+    const replies = await Post.find({ parentPost: postId })
+      .sort({ createdAt: -1 })
+      .skip(startIndex)
+      .limit(Number(limit))
+      .populate('user', 'id username role') // User details
+      .populate('board', '-user'); // Exclude the user field from board
+
+    res.status(200).json(replies);
+    logger.info('Replies fetched for post: %s', postId);
+  } catch (error) {
+    logger.error('Error fetching post replies: %o', error);
+    res.status(500).json({ error: 'Failed to get post replies' });
+  }
+};
