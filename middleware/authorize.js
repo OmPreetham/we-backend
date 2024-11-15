@@ -17,3 +17,10 @@ export const authorizeRoles = (...roles) => {
     next();
   };
 };
+
+export const authorizeAdmin = (req, res, next) => {
+  if (req.user && req.user.role === 'admin') {
+    return next(); // User is an admin, proceed to the next middleware
+  }
+  return res.status(403).json({ error: 'Access denied' }); // User is not an admin
+};

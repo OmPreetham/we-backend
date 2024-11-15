@@ -110,3 +110,14 @@
 {"level":"error","message":"Error fetching board: %o","service":"user-service","timestamp":"2024-10-28 21:34:22"}
 {"level":"error","message":"Error getting posts by board: %o","service":"user-service","timestamp":"2024-10-28 21:34:22"}
 {"level":"error","message":"Error in toggleFollowBoard: %o","service":"user-service","timestamp":"2024-11-02 11:30:21"}
+{"level":"error","message":"Error upvoting post: %o","service":"user-service","timestamp":"2024-11-14 16:57:58"}
+{"level":"error","message":"Error downvoting post: %o","service":"user-service","timestamp":"2024-11-14 17:10:17"}
+{"level":"error","message":"Error reporting post: %o","service":"user-service","timestamp":"2024-11-14 19:06:48"}
+{"level":"error","message":"Error reporting post: %o","service":"user-service","timestamp":"2024-11-14 19:06:48"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:18:38"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:19:01"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:19:07"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:19:08"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:19:41"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:19:49"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:20:10"}

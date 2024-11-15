@@ -10,6 +10,7 @@ import Follow from '../models/Follow.js';
 import redisClient from '../config/redisClient.js';
 import logger from '../config/logger.js';
 import { calculateTrendingScore } from '../utils/calculateTrendingScore.js';
+import Report from '../models/Report.js';
 
 /**
  * 1. Public Controllers
@@ -669,5 +670,40 @@ export const getPostReplies = async (req, res) => {
   } catch (error) {
     logger.error('Error fetching post replies: %o', error);
     res.status(500).json({ error: 'Failed to get post replies' });
+  }
+};
+
+/**
+ * @desc    Get Parent Post if Exists
+ * @route   GET /posts/:postId/parent
+ * @access  Public
+ */
+export const getParentPost = async (req, res) => {
+  try {
+    const { postId } = req.params;
+
+    // Find the post to check for a parent
+    const post = await Post.findById(postId).populate('parentPost');
+
+    if (!post) {
+      logger.warn('Post not found in getParentPost: %s', postId);
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    if (!post.parentPost) {
+      logger.info('No parent post for post: %s', postId);
+      return res.status(200).json({ message: 'No parent post exists' });
+    }
+
+    // Populate user and board details for the parent post
+    const parentPost = await Post.findById(post.parentPost._id)
+      .populate('user', 'id username role')
+      .populate('board', '-user');
+
+    res.status(200).json(parentPost);
+    logger.info('Parent post fetched for post: %s', postId);
+  } catch (error) {
+    logger.error('Error fetching parent post: %o', error);
+    res.status(500).json({ error: 'Failed to get parent post' });
   }
 };

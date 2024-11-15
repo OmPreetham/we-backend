@@ -13,6 +13,7 @@ import authRouter from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import boardRouter from './routes/boardRoutes.js';
 import postsRouter from './routes/postRoutes.js';
+import reportRoutes from './routes/reportRoutes.js';
 
 dotenv.config();
 
@@ -45,6 +46,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/user', userRoutes);
 app.use('/api/boards', boardRouter);
 app.use('/api/posts', postsRouter);
+app.use('/api/reports', reportRoutes);
 
 // Health check route
 app.get('/', (req, res) => {

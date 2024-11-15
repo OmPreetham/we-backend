@@ -21,6 +21,7 @@ import {
   getUserUpvotes,
   getUserDownvotes,
   getPostReplies,
+  getParentPost,
 } from '../controllers/postController.js';
 import { authenticateToken } from '../middleware/auth.js';
 
@@ -204,6 +205,13 @@ router.get(
   '/:postId/replies',
   [param('postId').isMongoId().withMessage('Invalid Post ID')],
   getPostReplies
+);
+
+// Get parent post if it exists
+router.get(
+  '/:postId/parent',
+  [param('postId').isMongoId().withMessage('Invalid Post ID')],
+  getParentPost
 );
 
 export default router;
