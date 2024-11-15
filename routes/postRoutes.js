@@ -22,6 +22,7 @@ import {
   getUserDownvotes,
   getPostReplies,
   getParentPost,
+  getForYouPosts,
 } from '../controllers/postController.js';
 import { authenticateToken } from '../middleware/auth.js';
 
@@ -55,6 +56,9 @@ router.post(
   ],
   createPost
 );
+
+// Get personalized posts for the user
+router.get('/for-you', authenticateToken, getForYouPosts);
 
 // Get trending posts
 router.get(
@@ -213,5 +217,6 @@ router.get(
   [param('postId').isMongoId().withMessage('Invalid Post ID')],
   getParentPost
 );
+
 
 export default router;

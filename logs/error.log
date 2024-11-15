@@ -121,3 +121,5 @@
 {"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:19:41"}
 {"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:19:49"}
 {"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:20:10"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-15 11:10:59"}
+{"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-15 11:11:03"}

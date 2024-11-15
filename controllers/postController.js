@@ -10,7 +10,6 @@ import Follow from '../models/Follow.js';
 import redisClient from '../config/redisClient.js';
 import logger from '../config/logger.js';
 import { calculateTrendingScore } from '../utils/calculateTrendingScore.js';
-import Report from '../models/Report.js';
 
 /**
  * 1. Public Controllers
@@ -714,5 +713,60 @@ export const getParentPost = async (req, res) => {
   } catch (error) {
     logger.error('Error fetching parent post: %o', error);
     res.status(500).json({ error: 'Failed to get parent post' });
+  }
+};
+
+/**
+ * @desc    Get Personalized Posts for the User
+ * @route   GET /api/posts/for-you
+ * @access  Protected
+ */
+export const getForYouPosts = async (req, res) => {
+  const userId = req.user.userId;
+
+  try {
+    // Step 1: Get followed boards
+    const followedBoards = await Follow.find({ user: userId }).select('board');
+    const followedBoardIds = followedBoards.map(follow => follow.board);
+
+    // Step 2: Get posts from followed boards
+    const postsFromFollowedBoards = await Post.find({ board: { $in: followedBoardIds } })
+      .populate('user', 'id username role')
+      .populate('board', '-user')
+      .sort({ createdAt: -1 })
+      .limit(50); // Fetch more posts for scoring
+
+    // Step 3: Get user interactions
+    const upvotedPosts = await Upvote.find({ user: userId }).select('post');
+    const downvotedPosts = await Downvote.find({ user: userId }).select('post');
+    const interactedPostIds = [...new Set([...upvotedPosts.map(upvote => upvote.post), ...downvotedPosts.map(downvote => downvote.post)])];
+
+    // Step 4: Score posts based on user interactions
+    const postScores = postsFromFollowedBoards.map(post => {
+      let score = 0;
+
+      // Increase score for upvoted posts
+      if (interactedPostIds.includes(post._id)) {
+        score += 10; // Arbitrary score for interaction
+      }
+
+      // Increase score for posts with high engagement
+      score += post.upvoteCount * 0.5; // Weight upvotes
+      score -= post.downvoteCount * 0.5; // Weight downvotes
+
+      return { post, score };
+    });
+
+    // Step 5: Sort posts by score
+    const sortedPosts = postScores.sort((a, b) => b.score - a.score).map(item => item.post);
+
+    // Step 6: Limit the number of recommended posts
+    const recommendedPosts = sortedPosts.slice(0, 10); // Top 10 posts
+
+    res.status(200).json(recommendedPosts);
+    logger.info('Fetched personalized posts for user %s', userId);
+  } catch (error) {
+    logger.error('Error fetching personalized posts: %o', error);
+    res.status(500).json({ error: 'Failed to get personalized posts' });
   }
 };
