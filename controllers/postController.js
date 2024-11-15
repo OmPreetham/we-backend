@@ -169,33 +169,42 @@ export const replyToPost = async (req, res) => {
   }
 
   try {
-    const { id } = req.params;
-    const { title, content, username: newUsername } = req.body;
-    const { userId, username } = req.user;
+    const { id } = req.params; // Parent post ID
+    const { title, content, username: newUsername } = req.body; // Reply details
+    const { userId, username } = req.user; // Authenticated user details
 
+    // Find the parent post
     const parentPost = await Post.findById(id);
     if (!parentPost) {
       logger.warn('Parent post not found in replyToPost: %s', id);
       return res.status(404).json({ error: 'Post not found' });
     }
 
+    // Create the reply post
     const replyPost = new Post({
       title,
       content,
       user: userId,
       username: newUsername || username,
       parentPost: id,
-      path: `${parentPost.path}${parentPost._id},`,
-      board: parentPost.board,
+      path: `${parentPost.path}${parentPost._id},`, // Maintain the path for replies
+      board: parentPost.board, // Set the board from the parent post
     });
 
+    // Save the reply post
     await replyPost.save();
 
     // Increment comment count of the parent post
     await Post.findByIdAndUpdate(id, { $inc: { commentCount: 1 } });
 
-    res.status(201).json(replyPost);
-    logger.info('Reply created by user %s: %s', userId, replyPost._id);
+    // Populate user and board details for the reply post
+    const populatedReplyPost = await Post.findById(replyPost._id)
+      .populate('user', 'id username role') // Populate user details
+      .populate('board', '-user'); // Exclude the user field from board
+
+    // Return the populated reply post
+    res.status(201).json(populatedReplyPost);
+    logger.info('Reply created by user %s: %s', userId, populatedReplyPost._id);
   } catch (error) {
     logger.error('Error replying to post: %o', error);
     res.status(500).json({ error: 'Failed to reply to post' });
