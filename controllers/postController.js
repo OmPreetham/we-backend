@@ -10,6 +10,7 @@ import Follow from '../models/Follow.js';
 import redisClient from '../config/redisClient.js';
 import logger from '../config/logger.js';
 import { calculateTrendingScore } from '../utils/calculateTrendingScore.js';
+import cloudinary from '../config/cloudinaryConfig.js';
 
 /**
  * 1. Public Controllers
@@ -113,8 +114,20 @@ export const createPost = async (req, res) => {
   }
 
   try {
-    const { title, content, parentPostId, boardId, username: newUsername } = req.body;
+    const { title, content, boardId, username: newUsername } = req.body;
     const { userId, username } = req.user;
+
+    // Handle image upload
+    let imageUrl = null;
+    if (req.file) {
+      logger.info('Uploading image to Cloudinary...');
+      const result = await cloudinary.uploader.upload(req.file.path);
+      imageUrl = result.secure_url; // Get the secure URL of the uploaded image
+      console.log(imageUrl)
+      logger.info('Image uploaded successfully: %s', imageUrl);
+    } else {
+      logger.warn('No image file provided');
+    }
 
     // Validate Board
     const board = await Board.findById(boardId);
@@ -123,31 +136,27 @@ export const createPost = async (req, res) => {
       return res.status(404).json({ error: 'Board not found' });
     }
 
-    // Determine post path
-    let postPath = ',';
-
-    if (parentPostId) {
-      const parentPost = await Post.findById(parentPostId);
-      if (!parentPost) {
-        logger.warn('Parent post not found in createPost: %s', parentPostId);
-        return res.status(404).json({ error: 'Parent post not found' });
-      }
-      postPath = `${parentPost.path}${parentPost._id},`;
-    }
-
+    // Create the new post
     const newPost = new Post({
       title,
       content,
       user: userId,
       username: newUsername || username,
-      parentPost: parentPostId || null,
-      path: postPath,
       board: boardId,
+      image: imageUrl, // Save the image URL in the post
     });
 
     await newPost.save();
-    res.status(201).json({ success: "New Post Created" });
-    logger.info('Post created by user %s: %s', userId, newPost._id);
+
+    // Populate the post with user and board details
+    const populatedPost = await Post.findById(newPost._id)
+      .populate('user', 'id username role') // Populate user details
+      .populate('board', '-user') // Exclude user field from board
+      .lean(); // Use lean() for faster read
+
+    // Send the response with the created post
+    res.status(201).json(populatedPost);
+    logger.info('Post created by user %s: %s', userId, populatedPost._id);
   } catch (error) {
     logger.error('Error creating post: %o', error);
     res.status(500).json({ error: 'Failed to create post' });

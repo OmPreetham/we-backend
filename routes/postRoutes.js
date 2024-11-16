@@ -25,6 +25,7 @@ import {
   getForYouPosts,
 } from '../controllers/postController.js';
 import { authenticateToken } from '../middleware/auth.js';
+import upload from '../middleware/upload.js';
 
 const router = express.Router();
 
@@ -34,6 +35,7 @@ const router = express.Router();
 router.post(
   '/create',
   authenticateToken,
+  upload.single('image'),
   [
     body('content')
       .notEmpty()

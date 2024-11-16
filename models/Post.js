@@ -53,6 +53,10 @@ const PostSchema = new mongoose.Schema(
       ref: 'Board',
       required: true,
     },
+    image: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true, // Automatically add createdAt and updatedAt fields

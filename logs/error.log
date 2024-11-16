@@ -123,3 +123,11 @@
 {"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-14 19:20:10"}
 {"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-15 11:10:59"}
 {"level":"error","message":"Error getting post by ID: %o","service":"user-service","timestamp":"2024-11-15 11:11:03"}
+{"level":"error","message":"Error creating post: %o","service":"user-service","timestamp":"2024-11-16 07:34:31"}
+{"level":"error","message":"Error creating post: %o","service":"user-service","timestamp":"2024-11-16 07:37:34"}
+{"level":"error","message":"Error creating post: %o","service":"user-service","timestamp":"2024-11-16 07:38:06"}
+{"level":"error","message":"Error creating post: %o","service":"user-service","timestamp":"2024-11-16 07:38:12"}
+{"level":"error","message":"Error creating post: %o","service":"user-service","timestamp":"2024-11-16 07:38:54"}
+{"level":"error","message":"Unhandled error: %o","service":"user-service","timestamp":"2024-11-16 08:04:41"}
+{"level":"error","message":"Unhandled error: %o","service":"user-service","timestamp":"2024-11-16 08:04:50"}
+{"level":"error","message":"Error creating post: %o","service":"user-service","timestamp":"2024-11-16 08:18:53"}
