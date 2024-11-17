@@ -117,7 +117,7 @@ export const registerController = async (req, res) => {
 
     if (existingUsername) {
       logger.warn('Username already taken: %s', username);
-      return res.status(400).json({ error: 'Username already taken' });
+      return res.status(400).json({ error: 'Cannot create account, try updating the username or password' });
     }
 
     // Hash and encrypt the email
