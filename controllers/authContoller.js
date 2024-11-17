@@ -64,10 +64,10 @@ export const requestVerificationCodeController = async (req, res) => {
     await transporter.sendMail({
       from: process.env.GMAIL_USER,
       to: email,
-      subject: 'Your Verification Code',
+      subject: 'Your We Verification Code',
       text: `Your OTP is ${otp}. It is valid for 10 minutes.`,
       html: `
-        <h1>Your Verification Code</h1>
+        <h1>Your We Verification Code</h1>
         <p>Your OTP is: <strong>${otp}</strong></p>
         <p>It is valid for 10 minutes.</p>
         <p>If you didn't request this code, please ignore this email.</p>

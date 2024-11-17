@@ -131,3 +131,18 @@
 {"level":"error","message":"Unhandled error: %o","service":"user-service","timestamp":"2024-11-16 08:04:41"}
 {"level":"error","message":"Unhandled error: %o","service":"user-service","timestamp":"2024-11-16 08:04:50"}
 {"level":"error","message":"Error creating post: %o","service":"user-service","timestamp":"2024-11-16 08:18:53"}
+{"level":"error","message":"Error in bookmarkPost: %o","service":"user-service","timestamp":"2024-11-17 01:35:48"}
+{"level":"error","message":"Error fetching personalized posts: %o","service":"user-service","timestamp":"2024-11-17 05:17:10"}
+{"level":"error","message":"Error fetching personalized posts: %o","service":"user-service","timestamp":"2024-11-17 05:17:14"}
+{"level":"error","message":"Error fetching personalized posts: %o","service":"user-service","timestamp":"2024-11-17 05:17:22"}
+{"level":"error","message":"Error fetching personalized posts: %o","service":"user-service","timestamp":"2024-11-17 05:17:44"}
+{"level":"error","message":"Error fetching personalized posts: %o","service":"user-service","timestamp":"2024-11-17 05:18:20"}
+{"level":"error","message":"Error fetching personalized posts for user %s: %o","service":"user-service","timestamp":"2024-11-17 05:19:07"}
+{"level":"error","message":"Error fetching personalized posts for user %s: %o","service":"user-service","timestamp":"2024-11-17 05:19:46"}
+{"level":"error","message":"Stack trace: %o","service":"user-service","timestamp":"2024-11-17 05:19:46"}
+{"level":"error","message":"Unhandled Rejection at: %o, reason: %o","service":"user-service","timestamp":"2024-11-17 05:34:18"}
+{"level":"error","message":"Unhandled Rejection at: %o, reason: %o","service":"user-service","timestamp":"2024-11-17 05:34:33"}
+{"level":"error","message":"Error in requestVerificationCodeController: %o","service":"user-service","timestamp":"2024-11-17 11:32:18"}
+{"level":"error","message":"Error in requestVerificationCodeController: %o","service":"user-service","timestamp":"2024-11-17 11:33:41"}
+{"level":"error","message":"Error in requestVerificationCodeController: %o","service":"user-service","timestamp":"2024-11-17 11:38:12"}
+{"level":"error","message":"Error in requestVerificationCodeController: %o","service":"user-service","timestamp":"2024-11-17 12:17:27"}

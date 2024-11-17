@@ -13,7 +13,6 @@ import {
   getPosts,
   getPostById,
   getPostsByBoard,
-  getTrendingPosts,
   getFollowingPosts,
   isPostBookmarkedByUser,
   getUserPosts,
@@ -60,19 +59,12 @@ router.post(
 );
 
 // Get personalized posts for the user
-router.get('/for-you', authenticateToken, getForYouPosts);
-
-// Get trending posts
-router.get(
-  '/trending',
-  [
-    query('limit')
-      .optional()
-      .isInt({ min: 1 })
-      .withMessage('Limit must be a positive integer'),
-  ],
-  getTrendingPosts
-);
+router.get('/for-you', authenticateToken,  [
+  query('limit')
+    .optional()
+    .isInt({ min: 1 })
+    .withMessage('Limit must be a positive integer'),
+], getForYouPosts);
 
 // Get following posts
 router.get(

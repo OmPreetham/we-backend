@@ -47,51 +47,51 @@ export const getPostById = async (req, res) => {
 };
 
 /**
- * @desc    Get Trending Posts
- * @route   GET /posts/trending
- * @access  Public
+ * @desc    Get For You Posts
+ * @route   GET /posts/for-you
+ * @access  Protected
  */
-export const getTrendingPosts = async (req, res) => {
+export const getForYouPosts = async (req, res) => {
   try {
-    const { limit = 10 } = req.query;
-    const cacheKey = `trendingPosts:limit:${limit}`;
+    const { userId } = req.user; // Get the authenticated user's ID
+    const { page = 1, limit = 10 } = req.query;
+    const startIndex = (page - 1) * limit;
 
-    // Check if trending posts are cached
-    const cachedTrendingPosts = await redisClient.get(cacheKey);
-    if (cachedTrendingPosts) {
-      logger.info('Trending posts fetched from cache');
-      return res.status(200).json(JSON.parse(cachedTrendingPosts));
+    // Step 1: Find the boards the user is following
+    const follows = await Follow.find({ user: userId }).select('board');
+    const followedBoardIds = follows.map((follow) => follow.board);
+
+    if (followedBoardIds.length === 0) {
+      logger.info('User %s is not following any boards', userId);
+      return res.status(200).json([]); // Return an empty array if no boards are followed
     }
 
-    // Fetch posts from the last 7 days (optional)
-    const oneWeekAgo = new Date();
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-
-    const posts = await Post.find({ createdAt: { $gte: oneWeekAgo } })
+    // Step 2: Fetch posts from the followed boards
+    const posts = await Post.find({ board: { $in: followedBoardIds } })
+      .sort({ createdAt: -1 })
+      .skip(startIndex)
+      .limit(Number(limit))
       .populate('user', 'id username role') // User details
       .populate('board', '-user') // Exclude the user field from board
       .lean(); // Use lean() for faster read
 
-    // Calculate trending score for each post
+    // Step 3: Calculate trending score for each post
     const postsWithScore = posts.map((post) => {
       const trendingScore = calculateTrendingScore(post);
       return { ...post, trendingScore };
     });
 
-    // Sort posts by trending score in descending order
+    // Step 4: Sort posts by trending score in descending order
     postsWithScore.sort((a, b) => b.trendingScore - a.trendingScore);
 
-    // Limit the number of posts returned
+    // Step 5: Limit the number of posts returned
     const trendingPosts = postsWithScore.slice(0, limit);
-    console.log('Trending posts:', trendingPosts);
+    logger.info('Fetched personalized posts for user %s', userId);
 
-    // Cache the trending posts for 5 minutes
-    await redisClient.set(cacheKey, JSON.stringify(trendingPosts), 'EX', 300); // Cache expires in 300 seconds (5 minutes)
     res.status(200).json(trendingPosts);
-    logger.info('Trending posts fetched and cached');
   } catch (error) {
-    logger.error('Error fetching trending posts: %o', error);
-    res.status(500).json({ error: 'Failed to get trending posts' });
+    logger.error('Error fetching personalized posts for user %s: %o', userId, error);
+    res.status(500).json({ error: 'Failed to get personalized posts' });
   }
 };
 
@@ -722,60 +722,5 @@ export const getParentPost = async (req, res) => {
   } catch (error) {
     logger.error('Error fetching parent post: %o', error);
     res.status(500).json({ error: 'Failed to get parent post' });
-  }
-};
-
-/**
- * @desc    Get Personalized Posts for the User
- * @route   GET /api/posts/for-you
- * @access  Protected
- */
-export const getForYouPosts = async (req, res) => {
-  const userId = req.user.userId;
-
-  try {
-    // Step 1: Get followed boards
-    const followedBoards = await Follow.find({ user: userId }).select('board');
-    const followedBoardIds = followedBoards.map(follow => follow.board);
-
-    // Step 2: Get posts from followed boards
-    const postsFromFollowedBoards = await Post.find({ board: { $in: followedBoardIds } })
-      .populate('user', 'id username role')
-      .populate('board', '-user')
-      .sort({ createdAt: -1 })
-      .limit(50); // Fetch more posts for scoring
-
-    // Step 3: Get user interactions
-    const upvotedPosts = await Upvote.find({ user: userId }).select('post');
-    const downvotedPosts = await Downvote.find({ user: userId }).select('post');
-    const interactedPostIds = [...new Set([...upvotedPosts.map(upvote => upvote.post), ...downvotedPosts.map(downvote => downvote.post)])];
-
-    // Step 4: Score posts based on user interactions
-    const postScores = postsFromFollowedBoards.map(post => {
-      let score = 0;
-
-      // Increase score for upvoted posts
-      if (interactedPostIds.includes(post._id)) {
-        score += 10; // Arbitrary score for interaction
-      }
-
-      // Increase score for posts with high engagement
-      score += post.upvoteCount * 0.5; // Weight upvotes
-      score -= post.downvoteCount * 0.5; // Weight downvotes
-
-      return { post, score };
-    });
-
-    // Step 5: Sort posts by score
-    const sortedPosts = postScores.sort((a, b) => b.score - a.score).map(item => item.post);
-
-    // Step 6: Limit the number of recommended posts
-    const recommendedPosts = sortedPosts.slice(0, 10); // Top 10 posts
-
-    res.status(200).json(recommendedPosts);
-    logger.info('Fetched personalized posts for user %s', userId);
-  } catch (error) {
-    logger.error('Error fetching personalized posts: %o', error);
-    res.status(500).json({ error: 'Failed to get personalized posts' });
   }
 };
