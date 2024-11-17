@@ -3,7 +3,7 @@
 import express from 'express';
 import { body } from 'express-validator';
 import { RateLimiterRedis } from 'rate-limiter-flexible';
-import Redis from 'ioredis';
+import redisClient from '../config/redisClient.js';
 import dotenv from 'dotenv';
 import {
   requestVerificationCodeController,
@@ -19,21 +19,6 @@ import logger from '../config/logger.js';
 dotenv.config();
 
 const router = express.Router();
-
-// 1. Configure Redis Client and Rate Limiters
-
-// Configure Redis client
-const redisClient = new Redis({
-  host: process.env.REDIS_HOST || 'localhost',
-  port: process.env.REDIS_PORT || 6379,
-  // password: process.env.REDIS_PASSWORD, // Uncomment if your Redis requires a password
-  enableOfflineQueue: false,
-});
-
-// Handle Redis errors
-redisClient.on('error', (err) => {
-  logger.error('Redis error in authRoutes: %o', err);
-});
 
 // Rate Limiter configuration for login
 const loginRateLimiter = new RateLimiterRedis({
