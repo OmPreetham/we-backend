@@ -146,3 +146,6 @@
 {"level":"error","message":"Error in requestVerificationCodeController: %o","service":"user-service","timestamp":"2024-11-17 11:33:41"}
 {"level":"error","message":"Error in requestVerificationCodeController: %o","service":"user-service","timestamp":"2024-11-17 11:38:12"}
 {"level":"error","message":"Error in requestVerificationCodeController: %o","service":"user-service","timestamp":"2024-11-17 12:17:27"}
+{"level":"error","message":"Redis error: %o","service":"user-service","timestamp":"2024-11-17 14:12:32"}
+{"level":"error","message":"Redis error in authRoutes: %o","service":"user-service","timestamp":"2024-11-17 14:12:38"}
+{"level":"error","message":"Redis error: %o","service":"user-service","timestamp":"2024-11-17 14:13:00"}
